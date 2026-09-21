@@ -350,6 +350,14 @@ export async function toggleGroceryItem(id: string) {
   revalidatePath('/grocery')
 }
 
+/** Ticks off every line behind one combined ingredient in a single action. */
+export async function setGroceryItemsChecked(ids: string[], checked: boolean) {
+  await requireSession()
+  if (ids.length === 0) return
+  await prisma.groceryItem.updateMany({ where: { id: { in: ids } }, data: { checked } })
+  revalidatePath('/grocery')
+}
+
 export async function deleteGroceryItem(id: string) {
   await requireSession()
   await prisma.groceryItem.delete({ where: { id } })

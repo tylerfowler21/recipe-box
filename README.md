@@ -179,6 +179,34 @@ would be wrong, and guessing at mid-sentence numbers does more harm than good.
 
 Scaling is display-only and never saved.
 
+## The grocery list
+
+Two views of the same rows:
+
+**By recipe** groups lines under the meal that put them there — it answers "why
+is this on the list".
+
+**Combined** merges them into one line per ingredient with the amounts added
+up, and names the meals it's for on the right. That's the question you actually
+have in the shop.
+
+`src/lib/ingredients.ts` does the combining, and is deliberately conservative:
+amounts are only summed when the ingredient names match *and* the units are
+compatible. Anything it can't confidently total keeps its own line, and a line
+whose total omits some unmeasured entries is marked `+more`. A wrong total is
+worse than no total.
+
+Two details it gets right that are easy to get wrong:
+
+- **`T` is a tablespoon and `t` a teaspoon.** Lowercasing the unit before
+  looking it up turns "10 T. butter" into ten teaspoons — a threefold error in
+  the direction of not buying enough.
+- **Totals are reported in the largest unit the recipes actually used** that
+  still leaves at least one of it, so 16 tbsp of butter reads "1 cup" rather
+  than a number nobody shops by.
+
+Ticking off a combined line checks every underlying row in one action.
+
 ## Photo cleanup
 
 Replacing a recipe's photo deletes the old one, and deleting a recipe deletes
