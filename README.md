@@ -101,9 +101,12 @@ re-seeding destroys.
 `postinstall` runs `prisma generate`, because `src/generated` is gitignored and
 Vercel builds from a clean clone.
 
-The app is fully server-rendered and every route reads cookies, so there is
-nothing to revalidate on a schedule and no build-time database access — the
-build succeeds without `DATABASE_URL` set.
+The app is fully server-rendered and every route reads cookies, so nothing is
+prerendered from the database. The Prisma client in `src/lib/prisma.ts` is
+built lazily on first property access for that reason: `next build` imports
+every route module to collect its config, and constructing a client at import
+time would make `DATABASE_URL` a *build*-time requirement. A missing URL should
+fail the request that needs it, not the build.
 
 ## How it's put together
 
