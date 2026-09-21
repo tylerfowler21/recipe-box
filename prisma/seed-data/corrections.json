@@ -1,0 +1,8 @@
+{
+  "_comment": "Hand corrections applied on top of the parsed docx. Keyed by the title the parser produced. Kept separate so re-running the parser never clobbers this work.",
+  "UNTITLED": {
+    "title": "Cajun Steak Bites with Parmesan Mashed Potatoes",
+    "source": "Instagram",
+    "description": "Cajun butter steak bites over creamy Parmesan mashed potatoes, with asparagus."
+  }
+}

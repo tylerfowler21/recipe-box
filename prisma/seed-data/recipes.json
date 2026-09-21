@@ -1,0 +1,2414 @@
+[
+  {
+    "title": "Chicken Pillows",
+    "ingredients": [
+      {
+        "text": "1 package of crescent rolls",
+        "group": null
+      },
+      {
+        "text": "3 Cooked Chicken Breasts",
+        "group": null
+      },
+      {
+        "text": "1 Box of Cream Cheese",
+        "group": null
+      },
+      {
+        "text": "Cream of Chicken",
+        "group": null
+      }
+    ],
+    "steps": [
+      {
+        "text": "Dice chicken and mix with cream cheese.",
+        "group": null
+      },
+      {
+        "text": "Lay rolls on board and cut into a square (8).",
+        "group": null
+      },
+      {
+        "text": "Fill rolls with chicken mix.",
+        "group": null
+      },
+      {
+        "text": "Spread melted butter over chicken pillows, and sprinkle bread crumbs.",
+        "group": null
+      },
+      {
+        "text": "Bake at 350 for 25 minutes.",
+        "group": null
+      },
+      {
+        "text": "Mix cream of chicken on the stove with 1 can of milk to make creamy.",
+        "group": "Gravy"
+      }
+    ],
+    "_warnings": [
+      "sub-section 'Gravy': split into 0 ingredient(s) / 1 step(s) by heuristic"
+    ]
+  },
+  {
+    "title": "Chinese Chicken Salad",
+    "ingredients": [
+      {
+        "text": "Romaine Lettuce",
+        "group": null
+      },
+      {
+        "text": "2 green onions - minced",
+        "group": null
+      },
+      {
+        "text": "2 chicken breasts - diced",
+        "group": null
+      },
+      {
+        "text": "Fried wontons - some with cream cheese",
+        "group": null
+      },
+      {
+        "text": "1 can of mandarin oranges",
+        "group": null
+      },
+      {
+        "text": "1/2 cup sesame seeds",
+        "group": null
+      },
+      {
+        "text": "1/4 cup sugar",
+        "group": "Dressing"
+      },
+      {
+        "text": "1/4 cup white vinegar",
+        "group": "Dressing"
+      },
+      {
+        "text": "1/4 cup peanut oil",
+        "group": "Dressing"
+      },
+      {
+        "text": "1 tbsp. Sesame oil",
+        "group": "Dressing"
+      },
+      {
+        "text": "1/2 tsp. salt",
+        "group": "Dressing"
+      }
+    ],
+    "steps": [],
+    "_warnings": [
+      "sub-section 'Dressing': split into 5 ingredient(s) / 0 step(s) by heuristic",
+      "NO STEPS"
+    ]
+  },
+  {
+    "title": "Crepes",
+    "ingredients": [
+      {
+        "text": "1 Cup Flour",
+        "group": null
+      },
+      {
+        "text": "2 Large Eggs",
+        "group": null
+      },
+      {
+        "text": "1/2 Cup Milk",
+        "group": null
+      },
+      {
+        "text": "1/2 Cup Water",
+        "group": null
+      },
+      {
+        "text": "1/4 Teaspoon Salt",
+        "group": null
+      },
+      {
+        "text": "2 Tablespoons butter, melted",
+        "group": null
+      }
+    ],
+    "steps": [],
+    "_warnings": [
+      "NO STEPS"
+    ]
+  },
+  {
+    "title": "Pizzas",
+    "ingredients": [
+      {
+        "text": "Dough",
+        "group": null
+      }
+    ],
+    "steps": [],
+    "_warnings": [
+      "unlabelled block: split into 1 ingredient(s) / 0 step(s) by heuristic",
+      "NO STEPS"
+    ]
+  },
+  {
+    "title": "Tomato Sauce",
+    "ingredients": [
+      {
+        "text": "4 lb. Roma Tomatoes, quartered (8 cups)",
+        "group": null
+      },
+      {
+        "text": "1 cup chopped onion",
+        "group": null
+      },
+      {
+        "text": "4 cloves garlic",
+        "group": null
+      },
+      {
+        "text": "2 tsp. Kosher salt",
+        "group": null
+      },
+      {
+        "text": "1 tsp. Red pepper Flakes",
+        "group": null
+      },
+      {
+        "text": "1 tsp. Sugar",
+        "group": null
+      },
+      {
+        "text": "1/2 cup olive oil",
+        "group": null
+      },
+      {
+        "text": "1/2 cup snipped fresh basil",
+        "group": null
+      }
+    ],
+    "steps": [
+      {
+        "text": "Preheat over to 450",
+        "group": null
+      },
+      {
+        "text": "Combine tomatoes, onion, garlic, salt, red pepper flakes, sugar and olive oil",
+        "group": null
+      },
+      {
+        "text": "Roast until tomatoes soften, 35-40 minutes. Remove from the oven and mash with a potato masher, keeping tomatoes a bit chunky.",
+        "group": null
+      },
+      {
+        "text": "Stir in basil.",
+        "group": null
+      }
+    ],
+    "_warnings": []
+  },
+  {
+    "title": "Bundt Cake",
+    "ingredients": [
+      {
+        "text": "15 - 18 Rhodes Rolls",
+        "group": null
+      },
+      {
+        "text": "1 pkg. Cook-N-Serve Butterscotch Pudding (Sprinkler on top)",
+        "group": null
+      },
+      {
+        "text": "1 cube butter",
+        "group": null
+      },
+      {
+        "text": "1/2 Cup Brown Sugar (Melt in microwave w/ butter)",
+        "group": null
+      }
+    ],
+    "steps": [
+      {
+        "text": "Spray Pan",
+        "group": null
+      },
+      {
+        "text": "Put rolls in pan",
+        "group": null
+      },
+      {
+        "text": "Sprinkle butterscotch over the rolls",
+        "group": null
+      },
+      {
+        "text": "Spoon the sauce over all the rolls",
+        "group": null
+      },
+      {
+        "text": "Let rise overnight",
+        "group": null
+      },
+      {
+        "text": "Cook @ 350 for 20-25 minute (until top rolls are golden brown)",
+        "group": null
+      },
+      {
+        "text": "Place tin on pan and then in the oven",
+        "group": null
+      },
+      {
+        "text": "Let sit for 10 minutes then flip",
+        "group": null
+      }
+    ],
+    "_warnings": []
+  },
+  {
+    "title": "French Dip",
+    "ingredients": [
+      {
+        "text": "3 lbs. Eye of Round Beef",
+        "group": null
+      },
+      {
+        "text": "1 Tablespoon Extra Virgin Olive Oil",
+        "group": null
+      },
+      {
+        "text": "1 Medium Yellow Onion (200g)",
+        "group": null
+      },
+      {
+        "text": "2 Packets Lipton Onion Soup Mix",
+        "group": null
+      },
+      {
+        "text": "2 Tablespoons Worcestershire Sauce",
+        "group": null
+      },
+      {
+        "text": "32 Ounces Beef Broth",
+        "group": null
+      },
+      {
+        "text": "Salt, Pepper, & Garlic Powder",
+        "group": null
+      }
+    ],
+    "steps": [
+      {
+        "text": "Slice roast and season liberally with salt, pepper, and garlic powder. Set aside for 15 minutes.",
+        "group": null
+      },
+      {
+        "text": "Turn the pressure cooker to saute. Once hot, add in the oil. Sear meat on all sides, 2-4 minutes per side. Remove meat from the inner pot and set aside.",
+        "group": null
+      },
+      {
+        "text": "Add in chopped onion and cook until translucent.",
+        "group": null
+      },
+      {
+        "text": "Pour in beef broth, onion soup mix, and worcestershire sauce and bring to a boil. Scrape up any browned bits on the bottom of the instant pot.",
+        "group": null
+      },
+      {
+        "text": "Add roast back into pressure cooker, submerging it in the liquid.",
+        "group": null
+      },
+      {
+        "text": "Cook on high pressure for 50 minutes.",
+        "group": null
+      },
+      {
+        "text": "When the cook time has elapsed, allow for pressure to naturally release for 20-30 minutes.",
+        "group": null
+      },
+      {
+        "text": "Shred and serve on your favorite French bread rolls. Use the extra liquid from your pot (Au Jus) for dipping.",
+        "group": null
+      },
+      {
+        "text": "Enjoy!",
+        "group": null
+      }
+    ],
+    "_warnings": []
+  },
+  {
+    "title": "Basil Corn",
+    "ingredients": [],
+    "steps": [
+      {
+        "text": "Sauté the corn with butter",
+        "group": null
+      },
+      {
+        "text": "Salt and pepper",
+        "group": null
+      },
+      {
+        "text": "At the very end add the fresh basil",
+        "group": null
+      }
+    ],
+    "_warnings": [
+      "unlabelled block: split into 0 ingredient(s) / 3 step(s) by heuristic",
+      "NO INGREDIENTS"
+    ]
+  },
+  {
+    "title": "Baked Chicken Breast - Oven",
+    "ingredients": [],
+    "steps": [
+      {
+        "text": "Put luke warm water in a bowl w/ salt",
+        "group": "Brine"
+      },
+      {
+        "text": "Place chicken in water (15 minutes)",
+        "group": "Brine"
+      },
+      {
+        "text": "Take off and dry with paper towel",
+        "group": "Brine"
+      },
+      {
+        "text": "Brush melted butter",
+        "group": "Brush"
+      },
+      {
+        "text": "Salt, Pepper, Garlic powder, paprika",
+        "group": "Rub"
+      },
+      {
+        "text": "25 minutes at 450 degrees",
+        "group": "Roast"
+      },
+      {
+        "text": "Let rest 5 - 10 minutes, place a sheet of tin foil over it",
+        "group": "Rest"
+      }
+    ],
+    "_warnings": [
+      "sub-section 'Brine': split into 0 ingredient(s) / 3 step(s) by heuristic",
+      "sub-section 'Brush': split into 0 ingredient(s) / 1 step(s) by heuristic",
+      "sub-section 'Rub': split into 0 ingredient(s) / 1 step(s) by heuristic",
+      "sub-section 'Roast': split into 0 ingredient(s) / 1 step(s) by heuristic",
+      "sub-section 'Rest': split into 0 ingredient(s) / 1 step(s) by heuristic",
+      "NO INGREDIENTS"
+    ]
+  },
+  {
+    "title": "Baked Chicken Breast - Air Fryer",
+    "ingredients": [],
+    "steps": [
+      {
+        "text": "Put luke warm water in a bowl w/ salt",
+        "group": "Brine"
+      },
+      {
+        "text": "Place chicken in water (15 minutes)",
+        "group": "Brine"
+      },
+      {
+        "text": "Take off and dry with paper towel",
+        "group": "Brine"
+      },
+      {
+        "text": "Brush melted butter",
+        "group": "Brush"
+      },
+      {
+        "text": "Salt, Pepper, Garlic powder, paprika",
+        "group": "Rub"
+      },
+      {
+        "text": "Cook",
+        "group": "Rub"
+      },
+      {
+        "text": "10 minutes at 400 degrees",
+        "group": "Rub"
+      },
+      {
+        "text": "Flip",
+        "group": "Rub"
+      },
+      {
+        "text": "10 minutes at 400 degrees",
+        "group": "Rub"
+      },
+      {
+        "text": "Let rest 5 - 10 minutes, place a sheet of tin foil over it",
+        "group": "Rest"
+      }
+    ],
+    "_warnings": [
+      "sub-section 'Brine': split into 0 ingredient(s) / 3 step(s) by heuristic",
+      "sub-section 'Brush': split into 0 ingredient(s) / 1 step(s) by heuristic",
+      "sub-section 'Rub': split into 0 ingredient(s) / 5 step(s) by heuristic",
+      "sub-section 'Rest': split into 0 ingredient(s) / 1 step(s) by heuristic",
+      "NO INGREDIENTS"
+    ]
+  },
+  {
+    "title": "Fettuccine Alfredo",
+    "ingredients": [
+      {
+        "text": "1 lb. fettuccine or any pasta",
+        "group": null
+      },
+      {
+        "text": "1/2 c. heavy cream",
+        "group": null
+      },
+      {
+        "text": "1/2 c. (1 stick) butter",
+        "group": null
+      },
+      {
+        "text": "1/2 c. Parmesan",
+        "group": null
+      },
+      {
+        "text": "Freshly ground pepper",
+        "group": null
+      }
+    ],
+    "steps": [
+      {
+        "text": "In a large pot of boiling salted water, cook pasta according to package instructions. Reserve about 1 cup of pasta water then drain.",
+        "group": null
+      },
+      {
+        "text": "Meanwhile, in a large skillet over medium heat, add cream and butter. Cook until butter is melted and the cream is bubbling. Whisk in Parmesan and season with salt and pepper. Let sauce simmer 1 to 2 minutes to thicken slightly. Sauce will still bee thin, but will thicken more as sauce cools and once pasta is added.",
+        "group": null
+      },
+      {
+        "text": "Add cooked pasta and toss until coated in sauce. If the sauce is too thick, add reserved pasta water, 1 tablespoon at a time. Garnish with parsley and serve immediately.",
+        "group": null
+      }
+    ],
+    "_warnings": []
+  },
+  {
+    "title": "Steak Bites",
+    "ingredients": [
+      {
+        "text": "1 Ribeye steak",
+        "group": null
+      },
+      {
+        "text": "Steak seasoning",
+        "group": null
+      },
+      {
+        "text": "Olive oil",
+        "group": null
+      }
+    ],
+    "steps": [
+      {
+        "text": "Dice steak up into cubes",
+        "group": null
+      },
+      {
+        "text": "Cover with seasoning and oil",
+        "group": null
+      },
+      {
+        "text": "Let sit for 30 - 40 minutes",
+        "group": null
+      },
+      {
+        "text": "Bake in the air fryer at 350 degrees for 8 minutes",
+        "group": null
+      }
+    ],
+    "_warnings": []
+  },
+  {
+    "title": "Chicken Nuggets",
+    "ingredients": [
+      {
+        "text": "1 Chicken Breast",
+        "group": null
+      },
+      {
+        "text": "4 Tbs. whole wheat breadcrumbs",
+        "group": null
+      },
+      {
+        "text": "2 Tbs. Flaxseed Meal",
+        "group": null
+      },
+      {
+        "text": "2 Tbs. grated Parmesan",
+        "group": null
+      },
+      {
+        "text": "Dash of paprika",
+        "group": null
+      },
+      {
+        "text": "Dash of garlic powder",
+        "group": null
+      },
+      {
+        "text": "Dash of onion powder",
+        "group": null
+      },
+      {
+        "text": "1 egg",
+        "group": null
+      },
+      {
+        "text": "Dash sea salt",
+        "group": null
+      }
+    ],
+    "steps": [
+      {
+        "text": "Preheat oven to 350 degrees.",
+        "group": null
+      },
+      {
+        "text": "﻿﻿﻿In a small bowl, combine breadcrumbs, flaxseed meal, Parmesan cheese, paprika, garlic powder and onion powder. Set aside",
+        "group": null
+      },
+      {
+        "text": "﻿﻿﻿In another bowl, beat the egg white. Set bowl next to the breadcrumb mixture.",
+        "group": null
+      },
+      {
+        "text": "﻿﻿﻿Rinse and dry chicken. Cut into small chunks and sprinkle with salt. Dip the chicken into the egg white and then toss in the breadcrumb mixture until completely coated.",
+        "group": null
+      },
+      {
+        "text": "﻿﻿﻿Spread the nuggets out onto a baking sheet lined with parchment paper. Cook 20 minutes, flip and cook an additional 20 minutes.",
+        "group": null
+      }
+    ],
+    "_warnings": []
+  },
+  {
+    "title": "Bang Bang Sauce",
+    "ingredients": [
+      {
+        "text": "1/2 cup avocado oil mayo @chosenfoods (can sub with regular mayo)",
+        "group": null
+      },
+      {
+        "text": "﻿﻿1/3 cup sweet chili sauce @traderjoes",
+        "group": null
+      },
+      {
+        "text": "﻿﻿1 tbsp hot sauce",
+        "group": null
+      },
+      {
+        "text": "﻿﻿1 tbsp sriracha",
+        "group": null
+      },
+      {
+        "text": "﻿﻿1 tbsp honey @naturenates",
+        "group": null
+      },
+      {
+        "text": "﻿﻿1 tbsp rice wine vinegar",
+        "group": null
+      },
+      {
+        "text": "﻿﻿1 tsp paprika",
+        "group": null
+      }
+    ],
+    "steps": [],
+    "_warnings": [
+      "NO STEPS"
+    ]
+  },
+  {
+    "title": "Baked Potato - Air Fryer",
+    "ingredients": [],
+    "steps": [
+      {
+        "text": "Wash and dry potatoes then rub with olive oil and salt. Prick outside of potatoes with a fork.",
+        "group": null
+      },
+      {
+        "text": "Place potatoes in the basket of the air fryer. Set temperature to 400 degrees and cook the potatoes for 40 minutes. Pierce with a fork to test. If the fork does not smoothly go through the potato, cook for an additional 5-8 minutes until done.",
+        "group": null
+      }
+    ],
+    "_warnings": [
+      "NO INGREDIENTS"
+    ]
+  },
+  {
+    "title": "Air Fryer French Fries",
+    "ingredients": [
+      {
+        "text": "Garlic Powder",
+        "group": null
+      },
+      {
+        "text": "Paprika",
+        "group": null
+      },
+      {
+        "text": "Salt",
+        "group": null
+      },
+      {
+        "text": "Pepper",
+        "group": null
+      },
+      {
+        "text": "Olive Oil",
+        "group": null
+      }
+    ],
+    "steps": [
+      {
+        "text": "Air fry them at 380 for 15 minutes, flipping halfway.",
+        "group": null
+      }
+    ],
+    "_warnings": []
+  },
+  {
+    "title": "Costa Vida Dressing",
+    "ingredients": [
+      {
+        "text": "1 cup mayonnaise (full-fat is best)",
+        "group": null
+      },
+      {
+        "text": "3/4 cup buttermilk",
+        "group": null
+      },
+      {
+        "text": "1 packet ranch seasoning mix",
+        "group": null
+      },
+      {
+        "text": "2 tomatillos (husks removed and cut in half)",
+        "group": null
+      },
+      {
+        "text": "1 bunch fresh cilantro (roughly chopped)",
+        "group": null
+      },
+      {
+        "text": "1 jalapeno (seeds removed for mild heat, roughly chopped)",
+        "group": null
+      },
+      {
+        "text": "1 tablespoon fresh lime juice (about 1/2 of a lime)",
+        "group": null
+      },
+      {
+        "text": "2 cloves garlic",
+        "group": null
+      }
+    ],
+    "steps": [
+      {
+        "text": "Add ingredients into the blender, in order as listed above. Blend on high for at least 1 minute, or until everything is combined and blended up really smooth.",
+        "group": null
+      },
+      {
+        "text": "Pour into a covered container, like Tupperware, and refrigerate for at least 4 hours before serving.",
+        "group": null
+      },
+      {
+        "text": "This can also be made the day before and refrigerated overnight.",
+        "group": null
+      },
+      {
+        "text": "If you prefer a thinner sauce try adding a little more buttermilk. I think this recipe is the perfect texture (not too thick and not too thin). Don't exceed 1 cup of buttermilk.",
+        "group": null
+      }
+    ],
+    "_warnings": []
+  },
+  {
+    "title": "Chicken Avocado Salad",
+    "ingredients": [
+      {
+        "text": "Lettuce",
+        "group": null
+      },
+      {
+        "text": "Chicken",
+        "group": null
+      },
+      {
+        "text": "Corn",
+        "group": null
+      },
+      {
+        "text": "Avocado",
+        "group": null
+      },
+      {
+        "text": "Chick-fil-a avocado lime dressing",
+        "group": null
+      },
+      {
+        "text": "Tortilla strips",
+        "group": null
+      }
+    ],
+    "steps": [],
+    "_warnings": [
+      "NO STEPS"
+    ]
+  },
+  {
+    "title": "Tostadas - Shredded Chicken",
+    "ingredients": [
+      {
+        "text": "Lettuce",
+        "group": null
+      },
+      {
+        "text": "Chicken",
+        "group": null
+      },
+      {
+        "text": "Corn Tortillas",
+        "group": null
+      },
+      {
+        "text": "Refried Beans",
+        "group": null
+      },
+      {
+        "text": "Costa Vida Dressing",
+        "group": null
+      },
+      {
+        "text": "Cheese",
+        "group": null
+      }
+    ],
+    "steps": [
+      {
+        "text": "Place the inner pot into the instant pot and place the trivet in the bottom.",
+        "group": "Chicken"
+      },
+      {
+        "text": "Add 1 cup of liquid to the instant pot (water, chicken broth, pineapple or apple juice).",
+        "group": "Chicken"
+      },
+      {
+        "text": "Place chicken breasts on top of the trivet in a single layer.",
+        "group": "Chicken"
+      },
+      {
+        "text": "Add salt and pepper or desired seasonings.",
+        "group": "Chicken"
+      },
+      {
+        "text": "Pressure cook on high for 12-15 minutes for fresh chicken breast, and 15-20 minutes for frozen chicken (depending on the thickness of the breasts).",
+        "group": "Chicken"
+      }
+    ],
+    "_warnings": []
+  },
+  {
+    "title": "Cinnamon Sugar Bites",
+    "ingredients": [
+      {
+        "text": "1 can of biscuit dough",
+        "group": null
+      },
+      {
+        "text": "6 tbsp of melted butter",
+        "group": null
+      },
+      {
+        "text": "1/2 cup of sugar",
+        "group": null
+      },
+      {
+        "text": "1 tbsp cinnamon",
+        "group": null
+      }
+    ],
+    "steps": [
+      {
+        "text": "Preheat oven to 350 F",
+        "group": null
+      },
+      {
+        "text": "Butter pan",
+        "group": null
+      },
+      {
+        "text": "Cut into quarters",
+        "group": null
+      },
+      {
+        "text": "Dip in butter",
+        "group": null
+      },
+      {
+        "text": "Dip in sugar",
+        "group": null
+      },
+      {
+        "text": "Cook 15 - 20 minutes",
+        "group": null
+      }
+    ],
+    "_warnings": []
+  },
+  {
+    "title": "Sesame Chicken",
+    "ingredients": [
+      {
+        "text": "1/4 cup soy sauce",
+        "group": "Sauce"
+      },
+      {
+        "text": "2 tbsp sriracha",
+        "group": "Sauce"
+      },
+      {
+        "text": "1/2 cup chicken stock",
+        "group": "Sauce"
+      },
+      {
+        "text": "2 tbsp honey",
+        "group": "Sauce"
+      },
+      {
+        "text": "2 tbsp brown sugar",
+        "group": "Sauce"
+      },
+      {
+        "text": "1 tbsp sesame oil",
+        "group": "Sauce"
+      },
+      {
+        "text": "Salt to taste",
+        "group": "Chicken"
+      },
+      {
+        "text": "2 tbsp soy sauce",
+        "group": "Chicken"
+      },
+      {
+        "text": "4 cloves minced garlic",
+        "group": "Chicken"
+      },
+      {
+        "text": "1/2 tbsp grated ginger",
+        "group": "Chicken"
+      },
+      {
+        "text": "1 tsp sesame oil",
+        "group": "Chicken"
+      },
+      {
+        "text": "1 cup cornstarch",
+        "group": "Chicken Mixture"
+      },
+      {
+        "text": "1 cup flour",
+        "group": "Chicken Mixture"
+      },
+      {
+        "text": "1 tsp baking powder",
+        "group": "Chicken Mixture"
+      },
+      {
+        "text": "1 tsp salt",
+        "group": "Chicken Mixture"
+      },
+      {
+        "text": "1 tsp black pepper",
+        "group": "Chicken Mixture"
+      },
+      {
+        "text": "1 tbsp cornstarch",
+        "group": "Cornstarch mixture"
+      },
+      {
+        "text": "1/4 cup water",
+        "group": "Cornstarch mixture"
+      }
+    ],
+    "steps": [
+      {
+        "text": "Cut up chicken & add marinade",
+        "group": "Chicken"
+      },
+      {
+        "text": "Cover and let sit for 30 minutes or overnight for best results",
+        "group": "Chicken"
+      },
+      {
+        "text": "Lightly coat front and back of chicken with mixture",
+        "group": "Chicken"
+      },
+      {
+        "text": "Brush front and back with avocado oil",
+        "group": "Chicken"
+      },
+      {
+        "text": "Air Fry at 400 degrees until golden brown (10 minutes)",
+        "group": "Chicken"
+      },
+      {
+        "text": "Make sauce mixture",
+        "group": "Chicken"
+      },
+      {
+        "text": "Add few tbsp of avocado oil",
+        "group": "Chicken"
+      },
+      {
+        "text": "Saute ginger, garlic & scallions for a few minutes over medium heat",
+        "group": "Chicken"
+      },
+      {
+        "text": "Add sauce and cook for a few more minutes",
+        "group": "Chicken"
+      },
+      {
+        "text": "Add cornstarch mixture to thicken",
+        "group": "Chicken"
+      },
+      {
+        "text": "Add chicken",
+        "group": "Chicken"
+      },
+      {
+        "text": "Serve with rice",
+        "group": "Chicken"
+      }
+    ],
+    "_warnings": []
+  },
+  {
+    "title": "Lettuce Thai Wraps",
+    "ingredients": [
+      {
+        "text": "Ground Beef",
+        "group": null
+      },
+      {
+        "text": "Green Onions",
+        "group": null
+      },
+      {
+        "text": "Rice",
+        "group": null
+      },
+      {
+        "text": "Korean BBQ Sauce",
+        "group": null
+      }
+    ],
+    "steps": [],
+    "_warnings": [
+      "NO STEPS"
+    ]
+  },
+  {
+    "title": "Chicken Cutlets",
+    "ingredients": [
+      {
+        "text": "2 chicken breasts, or 4 pre-sliced chicken cutlets",
+        "group": null
+      },
+      {
+        "text": "1 tablespoon cornstarch",
+        "group": null
+      },
+      {
+        "text": "1 cup all-purpose flour",
+        "group": null
+      },
+      {
+        "text": "2 eggs",
+        "group": null
+      },
+      {
+        "text": "1 cup plain breadcrumbs",
+        "group": null
+      },
+      {
+        "text": "1 teaspoon garlic powder",
+        "group": null
+      },
+      {
+        "text": "1 teaspoon onion powder",
+        "group": null
+      },
+      {
+        "text": "1 teaspoon salt",
+        "group": null
+      },
+      {
+        "text": "1 teaspoon pepper",
+        "group": null
+      },
+      {
+        "text": "canola oil, or enough to fill the pan ¼-inch deep",
+        "group": null
+      },
+      {
+        "text": "Maldon sea salt, to taste",
+        "group": null
+      }
+    ],
+    "steps": [
+      {
+        "text": "Carefully slice each chicken breast in half horizontally to yield 2 thin pieces. Place each chicken slice between 2 pieces of plastic wrap or inside a Ziploc bag. Flatten to an even ¼-inch thickness using a meat mallet or heavy-bottomed pan.",
+        "group": null
+      },
+      {
+        "text": "Prepare 3 breading stations in shallow bowls or plates: On the first plate, whisk together the cornstarch and flour. In a bowl, whisk together the eggs. On a second plate, whisk together the breadcrumbs and seasonings.",
+        "group": null
+      },
+      {
+        "text": "Heat the oil in a cast-iron skillet until 350 F, or until a piece of flour sizzles when added.",
+        "group": null
+      },
+      {
+        "text": "Bread the chicken one piece at a time. Starting with the first cutlet, coat the chicken in flour, then dip into the egg, then coat completely in breadcrumbs. Repeat with remaining cutlets.",
+        "group": null
+      },
+      {
+        "text": "Add the cutlets to the skillet, working in batches to avoid crowding. Fry until crispy and golden brown, about 3-4 minutes per side. Remove from the oil and cool slightly on a paper-towel lined plate.",
+        "group": null
+      }
+    ],
+    "_warnings": []
+  },
+  {
+    "title": "Costa Vida Pulled Pork",
+    "ingredients": [
+      {
+        "text": "2 1/4 cups Coke or Dr. Pepper",
+        "group": "(8-10 servings)"
+      },
+      {
+        "text": "2 1/2 pounds pork shoulder, trimmed of excess fat and cut into eighths",
+        "group": "(8-10 servings)"
+      },
+      {
+        "text": "1 1/4 cup brown sugar, divided",
+        "group": "(8-10 servings)"
+      },
+      {
+        "text": "1 tsp garlic salt",
+        "group": "(8-10 servings)"
+      },
+      {
+        "text": "1 (4 oz) can green chilies",
+        "group": "(8-10 servings)"
+      },
+      {
+        "text": "1 (10 oz can) red enchilada sauce",
+        "group": "(8-10 servings)"
+      }
+    ],
+    "steps": [
+      {
+        "text": "Pour 1 ½ cups of Coke into instapot. Add in the pork (cut into eighths), ¼ cup brown sugar and garlic salt.",
+        "group": null
+      },
+      {
+        "text": "Cover and slow cook on normal for about 8 hours. Remove the lid. Discard the liquid. Shred the meat and return it back into the instant pot.",
+        "group": null
+      },
+      {
+        "text": "Add ¾ cup Coke, 1 cup brown sugar, green chilies and enchilada sauce to a blender. Blend until smooth. Pour the mixture into the instant pot.",
+        "group": null
+      },
+      {
+        "text": "Cover and cook on normal for another 2 hours.",
+        "group": null
+      }
+    ],
+    "_warnings": []
+  },
+  {
+    "title": "Ricotta Orange Pound Cake with Strawberries",
+    "ingredients": [
+      {
+        "text": "1 1/2 cups cake flour",
+        "group": null
+      },
+      {
+        "text": "2 1/2 teaspoons baking powder",
+        "group": null
+      },
+      {
+        "text": "1 teaspoon kosher salt",
+        "group": null
+      },
+      {
+        "text": "1 1/2 cups sugar,",
+        "group": null
+      },
+      {
+        "text": "plus 1 tablespoon sugar for strawberries",
+        "group": null
+      },
+      {
+        "text": "3/4 cup (1 1/2 sticks) butter, room temperature, plus more to grease the baking pan",
+        "group": null
+      },
+      {
+        "text": "1 1/2 cups whole milk ricotta cheese",
+        "group": null
+      },
+      {
+        "text": "3 large eggs",
+        "group": null
+      },
+      {
+        "text": "1 teaspoon vanilla extract",
+        "group": null
+      },
+      {
+        "text": "2 oranges, zested",
+        "group": null
+      },
+      {
+        "text": "2 tablespoons Amaretto",
+        "group": null
+      },
+      {
+        "text": "Powdered sugar, for dusting",
+        "group": null
+      },
+      {
+        "text": "1 pint strawberries, hulled and quartered or 3 oranges, cut into supremes",
+        "group": null
+      }
+    ],
+    "steps": [
+      {
+        "text": "Preheat the oven to 350 degrees F. Grease a 9 by 5 by 3-inch loaf pan with butter. In a medium bowl combine the flour, baking powder, and salt. Stir to combine.",
+        "group": null
+      },
+      {
+        "text": "Using an electric mixer, cream together the butter, ricotta, and sugar until light and fluffy, about 3 minutes.",
+        "group": null
+      },
+      {
+        "text": "With the machine running, add the eggs 1 at a time.",
+        "group": null
+      },
+      {
+        "text": "Add the vanilla, orange zest, and Amaretto until combined.",
+        "group": null
+      },
+      {
+        "text": "Add the dry ingredients, a small amount at a time, until just incorporated.",
+        "group": null
+      },
+      {
+        "text": "Pour the mixture into the prepared pan and bake until a toothpick comes out clean and the cake is beginning to pull away from the sides of the pan, about 45 to 50 minutes.",
+        "group": null
+      },
+      {
+        "text": "Let the cake cool in the pan for 10 minutes then transfer to a wire rack to cool completely. Using a mesh sieve, dust the cooled cake with powdered sugar.",
+        "group": null
+      },
+      {
+        "text": "Meanwhile, place the strawberries (or orange supremes) in a small bowl with the remaining 1 tablespoon sugar. Let sit until the juices have pooled around the strawberries.",
+        "group": null
+      },
+      {
+        "text": "To serve, slice the cake and serve with a spoonful of strawberries and their juices over the top of the cake.",
+        "group": null
+      }
+    ],
+    "_warnings": []
+  },
+  {
+    "title": "Pulled Pork - Instant Pot",
+    "ingredients": [
+      {
+        "text": "1 Tablespoon Packed Brown Sugar",
+        "group": null
+      },
+      {
+        "text": "2 Teaspoons Paprika",
+        "group": null
+      },
+      {
+        "text": "2 Teaspoons Garlic Powder",
+        "group": null
+      },
+      {
+        "text": "2 Teaspoons Onion Powder",
+        "group": null
+      },
+      {
+        "text": "1 Teaspoon Salt",
+        "group": null
+      },
+      {
+        "text": "1 Teaspoon Pepper",
+        "group": null
+      },
+      {
+        "text": "1/2 Teaspoon Cumin",
+        "group": null
+      },
+      {
+        "text": "1/4 Teaspoon Cayenne, Optional",
+        "group": null
+      },
+      {
+        "text": "3 Pound Boneless Pork Roast, Cut into 3-4 inch cubes",
+        "group": null
+      },
+      {
+        "text": "2 Tablespoons Olive Oil",
+        "group": null
+      },
+      {
+        "text": "1/3 Cup Apple Cider Vinegar",
+        "group": null
+      },
+      {
+        "text": "2 Cups Barbecue Sauce, Divided",
+        "group": null
+      },
+      {
+        "text": "1 1/4 Cup Chicken or Beef Broth",
+        "group": null
+      },
+      {
+        "text": "1 Teaspoon Hot Pepper Sauce, Optional",
+        "group": null
+      }
+    ],
+    "steps": [
+      {
+        "text": "In a small bowl mix together the brown sugar, paprika, garlic powder, onion powder, salt, pepper, cumin, and cayenne.",
+        "group": null
+      },
+      {
+        "text": "Season the cubed pork with the spice mixture and set aside.",
+        "group": null
+      },
+      {
+        "text": "Let the pork marinate for 1-2 hours before cooking",
+        "group": null
+      },
+      {
+        "text": "In a medium bowl whisk together the apple cider vinegar, one cup of the barbecue sauce, the hot pepper sauce if using, and one cup of the broth.",
+        "group": null
+      },
+      {
+        "text": "Turn your instant pot to the saute setting. Add the olive oil and allow it to get hot.",
+        "group": null
+      },
+      {
+        "text": "Add half of the cubed pork to the hot oil and saute for 5 minutes, turning to brown on all sides. Remove the browned pork to a plate and repeat with the remaining half of the cubed pork.",
+        "group": null
+      },
+      {
+        "text": "Turn the instant pot off. Use the remaining 1/4 cup of broth and a wooden spoon to deglaze (scrape the brown bits) from the bottom of the pot.",
+        "group": null
+      },
+      {
+        "text": "Add all of the meat along with the barbecue sauce mixture to the instant pot.",
+        "group": null
+      },
+      {
+        "text": "Close the lid and set to sealing.",
+        "group": null
+      },
+      {
+        "text": "Cook on manual high pressure for 40 minutes. Once the cooking time is up, allow the pressure to release naturally for 10 minutes, then do a quick release.",
+        "group": null
+      },
+      {
+        "text": "Remove the meat from the instant pot and shred. Stir in the remaining cup of bbq sauce and serve on buns as desired.",
+        "group": null
+      }
+    ],
+    "_warnings": []
+  },
+  {
+    "title": "Easy Homemade Lasagna",
+    "ingredients": [
+      {
+        "text": "12 lasagna noodles uncooked",
+        "group": null
+      },
+      {
+        "text": "4 cups mozzarella cheese shredded and divided",
+        "group": null
+      },
+      {
+        "text": "½ cup parmesan cheese shredded and divided",
+        "group": null
+      },
+      {
+        "text": "½ pound lean ground beef",
+        "group": "Tomato Sauce"
+      },
+      {
+        "text": "½ pound Italian sausage",
+        "group": "Tomato Sauce"
+      },
+      {
+        "text": "1 onion diced",
+        "group": "Tomato Sauce"
+      },
+      {
+        "text": "2 cloves garlic minced",
+        "group": "Tomato Sauce"
+      },
+      {
+        "text": "36 ounces pasta sauce *see note",
+        "group": "Tomato Sauce"
+      },
+      {
+        "text": "2 tablespoons tomato paste",
+        "group": "Tomato Sauce"
+      },
+      {
+        "text": "1 teaspoon Italian seasoning",
+        "group": "Tomato Sauce"
+      },
+      {
+        "text": "2 cups ricotta cheese",
+        "group": "Cheese Mixture"
+      },
+      {
+        "text": "¼ cup fresh parsley chopped",
+        "group": "Cheese Mixture"
+      },
+      {
+        "text": "1 egg beaten",
+        "group": "Cheese Mixture"
+      }
+    ],
+    "steps": [
+      {
+        "text": "Preheat the oven to 350°F. In a large pot of salted water, boil lasagna noodles until al dente according to package directions. Drain, rinse under cold water, and set aside.",
+        "group": null
+      },
+      {
+        "text": "In a large skillet or dutch oven, brown beef, sausage, onion, and garlic over medium-high heat until no pink remains. Drain any fat.",
+        "group": null
+      },
+      {
+        "text": "Stir in the pasta sauce, tomato paste, Italian seasoning, ½ teaspoon of salt, and ¼ teaspoon of black pepper. Simmer uncovered over medium heat for 5 minutes or until thickened.",
+        "group": null
+      },
+      {
+        "text": "In a separate bowl, combine 1 ½ cups mozzarella, ¼ cup parmesan cheese, ricotta, parsley, egg, and ¼ teaspoon salt.",
+        "group": null
+      },
+      {
+        "text": "Spread 1 cup of the meat sauce in a 9×13 pan or casserole dish. Top it with 3 lasagna noodles. Layer with ⅓ of the ricotta cheese mixture and 1 cup of meat sauce. Repeat twice more. Finish with 3 noodles topped with remaining sauce.",
+        "group": null
+      },
+      {
+        "text": "Cover with foil and bake for 45 minutes.",
+        "group": null
+      },
+      {
+        "text": "Remove the foil and sprinkle with the remaining 2 ½ cups mozzarella cheese and ¼ cup parmesan cheese. Bake for an additional 15 minutes or until browned and bubbly. Broil for 2-3 minutes if desired.",
+        "group": null
+      },
+      {
+        "text": "Rest for at least 15 minutes before cutting.",
+        "group": null
+      }
+    ],
+    "_warnings": [
+      "sub-section 'Tomato Sauce': split into 7 ingredient(s) / 0 step(s) by heuristic",
+      "sub-section 'Cheese Mixture': split into 3 ingredient(s) / 0 step(s) by heuristic"
+    ]
+  },
+  {
+    "title": "S’mores cookie bars",
+    "ingredients": [
+      {
+        "text": "7-8 graham crackers (unbroken)",
+        "group": null
+      },
+      {
+        "text": "1 cup unsalted butter",
+        "group": null
+      },
+      {
+        "text": "1 cup granulated sugar",
+        "group": null
+      },
+      {
+        "text": "1 cup brown sugar, packed",
+        "group": null
+      },
+      {
+        "text": "2 large eggs",
+        "group": null
+      },
+      {
+        "text": "1 tsp vanilla extract",
+        "group": null
+      },
+      {
+        "text": "2 1/1 cups all purpose flour",
+        "group": null
+      },
+      {
+        "text": "1 tsp baking soda",
+        "group": null
+      },
+      {
+        "text": "1/2 tsp salt",
+        "group": null
+      },
+      {
+        "text": "1 cup semi sweet chocolate chips",
+        "group": null
+      },
+      {
+        "text": "1 cup mini marshmallows",
+        "group": null
+      },
+      {
+        "text": "2 Hershey Milk Chocolate Bars",
+        "group": null
+      }
+    ],
+    "steps": [
+      {
+        "text": "Preheat your oven to 350°F (175°C) and grease a 9×13-inch baking pan.",
+        "group": null
+      },
+      {
+        "text": "In a large mixing bowl, cream together the softened butter, granulated sugar, and brown sugar until light and fluffy.",
+        "group": null
+      },
+      {
+        "text": "Add the eggs one at a time, beating well after each addition. Stir in the vanilla extract.",
+        "group": null
+      },
+      {
+        "text": "In a separate bowl, whisk together the all-purpose flour, baking soda, and salt. Gradually add the dry ingredients to the butter mixture, mixing until just combined.",
+        "group": null
+      },
+      {
+        "text": "Add in your chocolate morsels & marshmallows",
+        "group": null
+      },
+      {
+        "text": "Press graham crackers to the bottom of the pan. Top with your cookie dough and make sure it is spread out evenly. Top with additional marshmallows if desired.",
+        "group": null
+      },
+      {
+        "text": "Bake at 375˚F for 25-30 minutes or until golden brown and a toothpick comes out clean from the center. Cover with foil if cookie dough browns faster than center bakes.",
+        "group": null
+      },
+      {
+        "text": "Remove bars from the oven and add your Hershey bar pieces on top. Allow to cool for 20-30 minutes. This will help you be able to cut your bars without it falling apart.",
+        "group": null
+      }
+    ],
+    "_warnings": []
+  },
+  {
+    "title": "Peach Cobbler",
+    "ingredients": [
+      {
+        "text": "2 large cans sliced peaches",
+        "group": null
+      },
+      {
+        "text": "1 1/2 cups powdered sugar",
+        "group": null
+      },
+      {
+        "text": "1 8 oz package cream cheese",
+        "group": null
+      },
+      {
+        "text": "1 box yellow cake mix",
+        "group": null
+      },
+      {
+        "text": "1/2 tsp cinnamon",
+        "group": null
+      },
+      {
+        "text": "1/2 cup butter",
+        "group": null
+      },
+      {
+        "text": "1/2 pint heavy whipping cream",
+        "group": null
+      },
+      {
+        "text": "Ice cream",
+        "group": null
+      }
+    ],
+    "steps": [
+      {
+        "text": "Preheat oven to 350 F.",
+        "group": null
+      },
+      {
+        "text": "Spray a 9xu glass casserole dish with non-stick spray.",
+        "group": null
+      },
+      {
+        "text": "Beat the cream cheese and powdered sugar together until fully combined",
+        "group": null
+      },
+      {
+        "text": "Drain the peaches and pour them into the bottom of the greased dish.",
+        "group": null
+      },
+      {
+        "text": "Using a spoon dollop the cream cheese across the peaches.",
+        "group": null
+      },
+      {
+        "text": "Pour the cake mix evenly over the top of the peaches and cream cheese. This will completely cover the peaches.sprinkle the cinnamon evenly across the cake mix.",
+        "group": null
+      },
+      {
+        "text": "Space the butter into chunks and distribute them on top of the cake mix. pour over the heavy cream.",
+        "group": null
+      },
+      {
+        "text": "Place in the oven and cook for 40-60 minutes. Until golden brown on top and the cake has cooked.",
+        "group": null
+      },
+      {
+        "text": "After removing from the oven allow the cobbler to \"set-up\" for 10 minutes before serving",
+        "group": null
+      },
+      {
+        "text": "Serve with ice cream",
+        "group": null
+      }
+    ],
+    "_warnings": []
+  },
+  {
+    "title": "PROTEIN BALLS",
+    "ingredients": [
+      {
+        "text": "1/4 cup of honey",
+        "group": null
+      },
+      {
+        "text": "1/2 cup of peanut butter",
+        "group": null
+      },
+      {
+        "text": "1 & 1/2 cups of red mill organic oats",
+        "group": null
+      },
+      {
+        "text": "1/4 cup of chocolate chips",
+        "group": null
+      },
+      {
+        "text": "Mix all together",
+        "group": null
+      }
+    ],
+    "steps": [],
+    "_warnings": [
+      "NO STEPS"
+    ]
+  },
+  {
+    "title": "HONEY LIME CHICKEN ENCHILADAS",
+    "ingredients": [
+      {
+        "text": "1/3 cup honey",
+        "group": null
+      },
+      {
+        "text": "1/4 cup lime juice",
+        "group": null
+      },
+      {
+        "text": "1 Tablespoon chili powder",
+        "group": null
+      },
+      {
+        "text": "1/2 teaspoon garlic powder",
+        "group": null
+      },
+      {
+        "text": "2 pounds chicken, cooked and shredded , (about 3-4 cups, rotisserie chicken works well here)",
+        "group": null
+      },
+      {
+        "text": "8-10 soft taco size flour tortillas",
+        "group": null
+      },
+      {
+        "text": "4 cups shredded Monterey jack or cheddar cheese",
+        "group": null
+      },
+      {
+        "text": "2 cups green enchilada sauce",
+        "group": null
+      },
+      {
+        "text": "1 cup heavy cream",
+        "group": null
+      }
+    ],
+    "steps": [
+      {
+        "text": "Preheat oven to 350 degrees. Spray a 9X13 pan with cooking spray.",
+        "group": null
+      },
+      {
+        "text": "Mix the honey, lime juice, chili powder and garlic powder together and toss with the shredded chicken. Let it marinate for 1/2 hour in a Ziploc bag or up to 8 hours.",
+        "group": null
+      },
+      {
+        "text": "Pour enough enchilada sauce on the bottom of each baking pan to create a thin layer on the bottom, about a 1/2 cup. Fill flour tortillas with chicken and a generous amount of shredded cheese, saving about 1 cup of cheese to sprinkle on top of enchiladas.",
+        "group": null
+      },
+      {
+        "text": "Mix the remaining enchilada sauce with the cream and any leftover chicken marinade (you might not need to use all of the enchilada sauce depending on how saucy you like yours). Pour sauce on top of the enchiladas.",
+        "group": null
+      },
+      {
+        "text": "Bake at 350 degrees for 25-30 minutes until brown and crispy on top. Add the reserved 1 cup of cheese on top for the last 5 minutes of baking. I serve mine with sour cream, pico de gallo, cilantro lime rice, and black beans.",
+        "group": null
+      }
+    ],
+    "_warnings": []
+  },
+  {
+    "title": "CHICKEN SALAD",
+    "ingredients": [
+      {
+        "text": "3 cups cooked chicken chopped (see notes in the post for how to cook shredded chicken)",
+        "group": null
+      },
+      {
+        "text": "1 pound bacon diced and cooked until crisp",
+        "group": null
+      },
+      {
+        "text": "1 cup cherry tomatoes cut in half",
+        "group": null
+      },
+      {
+        "text": "1/2 small red onion diced small",
+        "group": null
+      },
+      {
+        "text": "2 stalks celery diced",
+        "group": null
+      },
+      {
+        "text": "1/2 cup mayonnaise",
+        "group": null
+      },
+      {
+        "text": "1 tablespoon lemon juice",
+        "group": null
+      },
+      {
+        "text": "1/2 teaspoon salt",
+        "group": null
+      },
+      {
+        "text": "1/2 teaspoon garlic powder",
+        "group": null
+      },
+      {
+        "text": "1/2 teaspoon onion powder",
+        "group": null
+      },
+      {
+        "text": "1/4 teaspoon black pepper",
+        "group": null
+      }
+    ],
+    "steps": [
+      {
+        "text": "In a large bowl combine the cooked chicken, bacon, tomatoes, red onion, and celery.",
+        "group": null
+      },
+      {
+        "text": "In a small bowl whisk together the mayonnaise, lemon juice, salt, garlic powder, onion powder, and black pepper. Taste and add more salt and pepper to taste, being careful to start out with just a little.",
+        "group": null
+      },
+      {
+        "text": "Stir the dressing into the main ingredients.",
+        "group": null
+      },
+      {
+        "text": "Serve right away or store in an airtight container for 3 to 5 days. Please note that if this salad sits out for more than 2 hours, the qleftovers should be thrown away.",
+        "group": null
+      }
+    ],
+    "_warnings": []
+  },
+  {
+    "title": "BREAKFAST HOT POCKETS",
+    "ingredients": [
+      {
+        "text": "1 1/2 tablespoons yeast",
+        "group": "Dough"
+      },
+      {
+        "text": "1/2 cup warm water (110°)",
+        "group": "Dough"
+      },
+      {
+        "text": "3/4 cup evaporated milk (110°)",
+        "group": "Dough"
+      },
+      {
+        "text": "1/2 cup vegetable oil",
+        "group": "Dough"
+      },
+      {
+        "text": "1/4 cup sugar",
+        "group": "Dough"
+      },
+      {
+        "text": "1 egg",
+        "group": "Dough"
+      },
+      {
+        "text": "1 teaspoon salt",
+        "group": "Dough"
+      },
+      {
+        "text": "3 1/2 cup flour",
+        "group": "Dough"
+      },
+      {
+        "text": "1 pound bulk sausage",
+        "group": "Filling"
+      },
+      {
+        "text": "1/2 cup onion, chopped",
+        "group": "Filling"
+      },
+      {
+        "text": "1 1/2 cup frozen hash brown potatoes, thawed",
+        "group": "Filling"
+      },
+      {
+        "text": "7 large eggs",
+        "group": "Filling"
+      },
+      {
+        "text": "3 tablespoons milk",
+        "group": "Filling"
+      },
+      {
+        "text": "1/2 teaspoon salt",
+        "group": "Filling"
+      },
+      {
+        "text": "1/2 teaspoon pepper",
+        "group": "Filling"
+      },
+      {
+        "text": "1/2 teaspoon garlic salt",
+        "group": "Filling"
+      },
+      {
+        "text": "pinch of cayenne pepper",
+        "group": "Filling"
+      },
+      {
+        "text": "2 cups cheddar cheese, shredded",
+        "group": "Filling"
+      }
+    ],
+    "steps": [
+      {
+        "text": "In a bowl, dissolve yeast in the water. Add milk, oil, sugar, egg, salt, and 2 cups flour; beat until smooth. Add enough flour until it makes a soft dough but do not knead. Cover and let rise in a warm place until doubled, about 1 hour.",
+        "group": "Dough"
+      },
+      {
+        "text": "Cook the sausage and onion over medium heat until browned. Drain. Add the hash browns, eggs, milk, and spices. Cook and stir until set. Sprinkle it with cheese and keep warm.",
+        "group": "Filling"
+      },
+      {
+        "text": "Preheat oven to 350°F",
+        "group": "Assembling the pockets"
+      },
+      {
+        "text": "Punch down the dough and cut into 16 equal pieces. Roll each piece into 7 inch circles on a floured surface. Top with 1/3 cup filling, fold, and pinch shut. Bake for 15-20 minutes.",
+        "group": "Assembling the pockets"
+      },
+      {
+        "text": "Allow cooling on the baking sheet. Once cooled, place in the freezer until frozen. Store in a ziplocK bag in the freezer for 3-6 months. To reheat, place on a paper towel and microwave for 1 1/2-2 minutes.",
+        "group": "To freeze"
+      }
+    ],
+    "_warnings": [
+      "sub-section 'Dough': split into 8 ingredient(s) / 0 step(s) by heuristic",
+      "sub-section 'Filling': split into 10 ingredient(s) / 0 step(s) by heuristic",
+      "sub-section 'Dough': split into 0 ingredient(s) / 1 step(s) by heuristic",
+      "sub-section 'Filling': split into 0 ingredient(s) / 1 step(s) by heuristic",
+      "sub-section 'Assembling the pockets': split into 0 ingredient(s) / 2 step(s) by heuristic",
+      "sub-section 'To freeze': split into 0 ingredient(s) / 1 step(s) by heuristic"
+    ]
+  },
+  {
+    "title": "SUGAR COOKIES",
+    "ingredients": [
+      {
+        "text": "1 c. Sugar",
+        "group": "Dough"
+      },
+      {
+        "text": "½ c. Butter (melted)",
+        "group": "Dough"
+      },
+      {
+        "text": "1 Egg",
+        "group": "Dough"
+      },
+      {
+        "text": "1 tsp. Vanilla",
+        "group": "Dough"
+      },
+      {
+        "text": "⅓ c. Sour cream",
+        "group": "Dough"
+      },
+      {
+        "text": "⅓ tsp. Baking soda",
+        "group": "Dough"
+      },
+      {
+        "text": "¼ tsp. Salt",
+        "group": "Dough"
+      },
+      {
+        "text": "2 c. Flour",
+        "group": "Dough"
+      }
+    ],
+    "steps": [
+      {
+        "text": "Combine all ingredients, roll out dough and cut. Bake at 375 for 6 minutes. Frost.",
+        "group": "Dough"
+      }
+    ],
+    "_warnings": [
+      "sub-section 'Dough': split into 8 ingredient(s) / 1 step(s) by heuristic"
+    ]
+  },
+  {
+    "title": "CREAM CHEESE FROSTING",
+    "ingredients": [
+      {
+        "text": "2 c. Powdered sugar",
+        "group": null
+      },
+      {
+        "text": "⅓ c. Butter",
+        "group": null
+      },
+      {
+        "text": "3 oz. Cream cheese",
+        "group": null
+      },
+      {
+        "text": "1 T. Milk",
+        "group": null
+      },
+      {
+        "text": "1 tsp. Vanilla",
+        "group": null
+      }
+    ],
+    "steps": [
+      {
+        "text": "Beat together until smooth",
+        "group": null
+      }
+    ],
+    "_warnings": [
+      "unlabelled block: split into 5 ingredient(s) / 1 step(s) by heuristic"
+    ]
+  },
+  {
+    "title": "COCONUT LIME FROSTING",
+    "ingredients": [
+      {
+        "text": "1 package of cream cheese",
+        "group": null
+      },
+      {
+        "text": "½ cup butter",
+        "group": null
+      },
+      {
+        "text": "2 tsp. lime juice (one lime)",
+        "group": null
+      },
+      {
+        "text": "2 tsp lime zest",
+        "group": null
+      },
+      {
+        "text": "2 ½ tsp. coconut extract",
+        "group": null
+      },
+      {
+        "text": "½ tsp. Vanilla extract",
+        "group": null
+      },
+      {
+        "text": "4 cups of powdered sugar",
+        "group": null
+      }
+    ],
+    "steps": [],
+    "_warnings": [
+      "unlabelled block: split into 7 ingredient(s) / 0 step(s) by heuristic",
+      "NO STEPS"
+    ]
+  },
+  {
+    "title": "PUMPKIN BARS",
+    "ingredients": [
+      {
+        "text": "2 C. Flour",
+        "group": null
+      },
+      {
+        "text": "2 c. Sugar",
+        "group": null
+      },
+      {
+        "text": "2 tsp. Baking powder",
+        "group": null
+      },
+      {
+        "text": "1 tsp. Cinnamon",
+        "group": null
+      },
+      {
+        "text": "1 tsp. Nutmeg",
+        "group": null
+      },
+      {
+        "text": "½ tsp. Salt",
+        "group": null
+      },
+      {
+        "text": "½ tsp. Cloves",
+        "group": null
+      },
+      {
+        "text": "1 c. Oil",
+        "group": null
+      },
+      {
+        "text": "1 (16 oz) Can of plain pumpkin",
+        "group": null
+      },
+      {
+        "text": "4 Eggs",
+        "group": null
+      },
+      {
+        "text": "Mix together and pour into a greased cookie sheet. Bake at 350 for 25 minutes",
+        "group": null
+      },
+      {
+        "text": "2 c. Powdered sugar",
+        "group": "Cream cheese frosting"
+      },
+      {
+        "text": "⅓ c. Butter",
+        "group": "Cream cheese frosting"
+      },
+      {
+        "text": "3 oz. Cream cheese",
+        "group": "Cream cheese frosting"
+      },
+      {
+        "text": "1 T. Milk",
+        "group": "Cream cheese frosting"
+      },
+      {
+        "text": "1 tsp. Vanilla",
+        "group": "Cream cheese frosting"
+      }
+    ],
+    "steps": [
+      {
+        "text": "Beat together until smooth",
+        "group": "Cream cheese frosting"
+      }
+    ],
+    "_warnings": [
+      "sub-section 'Cream cheese frosting': split into 5 ingredient(s) / 1 step(s) by heuristic"
+    ]
+  },
+  {
+    "title": "PEACH CRISP",
+    "ingredients": [
+      {
+        "text": "3-4 peaches (2-3 cans)",
+        "group": "Peach mixture"
+      },
+      {
+        "text": "2 T. Flour",
+        "group": "Peach mixture"
+      },
+      {
+        "text": "3 T. Sugar",
+        "group": "Peach mixture"
+      },
+      {
+        "text": "Dash of vanilla",
+        "group": "Peach mixture"
+      },
+      {
+        "text": "½ c. Flour",
+        "group": "Topping"
+      },
+      {
+        "text": "½ c. Brown sugar",
+        "group": "Topping"
+      },
+      {
+        "text": "10 T. Cold diced butter",
+        "group": "Topping"
+      },
+      {
+        "text": "1 tsp. Cinnamon",
+        "group": "Topping"
+      },
+      {
+        "text": "Dash of nutmeg",
+        "group": "Topping"
+      },
+      {
+        "text": "Dash of salt",
+        "group": "Topping"
+      },
+      {
+        "text": "¾ c. Oats",
+        "group": "Topping"
+      }
+    ],
+    "steps": [
+      {
+        "text": "Preheat the oven to 350. Slice peaches and lay them in an 8X8 dish. Sprinkle 2 T. of Flour and 3 T. sugar over the peaches and stir.",
+        "group": "Topping"
+      },
+      {
+        "text": "For the topping, Add everything to a bowl except for the oats. Work it with your hand for a few minutes until it comes together. Then add the oats and combine with your hands.",
+        "group": "Topping"
+      },
+      {
+        "text": "Rip apart pieces of the topping and place on top of the peaches. Once fully covered, bake for 35-40 minutes or until the top is golden brown. Add vanilla ice cream.",
+        "group": "Topping"
+      }
+    ],
+    "_warnings": [
+      "sub-section 'Peach mixture': split into 4 ingredient(s) / 0 step(s) by heuristic",
+      "sub-section 'Topping': split into 7 ingredient(s) / 3 step(s) by heuristic"
+    ]
+  },
+  {
+    "title": "GREEN SMOOTHIE",
+    "ingredients": [
+      {
+        "text": "½ cup Greek yogurt",
+        "group": null
+      },
+      {
+        "text": "½ Banana",
+        "group": null
+      },
+      {
+        "text": "1 cup Frozen mangos",
+        "group": null
+      },
+      {
+        "text": "1 cup Frozen spinach",
+        "group": null
+      },
+      {
+        "text": "Almond milk",
+        "group": null
+      }
+    ],
+    "steps": [],
+    "_warnings": [
+      "unlabelled block: split into 5 ingredient(s) / 0 step(s) by heuristic",
+      "NO STEPS"
+    ]
+  },
+  {
+    "title": "EGG BITES",
+    "ingredients": [
+      {
+        "text": "4 eggs",
+        "group": null
+      },
+      {
+        "text": "1 cup of milk",
+        "group": null
+      },
+      {
+        "text": "4 slices of cooked bacon",
+        "group": null
+      },
+      {
+        "text": "1 cup of cheese",
+        "group": null
+      }
+    ],
+    "steps": [
+      {
+        "text": "Mix all together. Bake at 325 for 25 minutes.",
+        "group": null
+      }
+    ],
+    "_warnings": [
+      "unlabelled block: split into 4 ingredient(s) / 1 step(s) by heuristic"
+    ]
+  },
+  {
+    "title": "GUACAMOLE",
+    "ingredients": [
+      {
+        "text": "2 Avocados",
+        "group": null
+      },
+      {
+        "text": "Juice from 1 lemon",
+        "group": null
+      },
+      {
+        "text": "¼ red onion",
+        "group": null
+      },
+      {
+        "text": "¼ cilantro",
+        "group": null
+      },
+      {
+        "text": "Salt",
+        "group": null
+      },
+      {
+        "text": "Pepper",
+        "group": null
+      }
+    ],
+    "steps": [],
+    "_warnings": [
+      "unlabelled block: split into 6 ingredient(s) / 0 step(s) by heuristic",
+      "NO STEPS"
+    ]
+  },
+  {
+    "title": "WHITE BREAD",
+    "ingredients": [
+      {
+        "text": "3 cups warm water baby bottle temperature",
+        "group": null
+      },
+      {
+        "text": "1 1/2 T active dry yeast",
+        "group": null
+      },
+      {
+        "text": "3/4 cup sugar or honey",
+        "group": null
+      },
+      {
+        "text": "1 T salt",
+        "group": null
+      },
+      {
+        "text": "1 egg beaten",
+        "group": null
+      },
+      {
+        "text": "1/3 cup coconut oil, melted",
+        "group": null
+      },
+      {
+        "text": "8 1/2 cups all-purpose flour or bread flour, give or take 1/2 cup",
+        "group": null
+      }
+    ],
+    "steps": [
+      {
+        "text": "For bread loaves use 3, 1/5-quart loaf pans or pans that measure 4x8 or 5x9.",
+        "group": null
+      },
+      {
+        "text": "Combine water, yeast, and sugar. Mix gently. Cover and let the yeast proof for ten minutes. If yeast does not foam up then do not move forward, start again with new yeast.",
+        "group": null
+      },
+      {
+        "text": "Add salt, egg, and oil. Mix to combine.",
+        "group": null
+      },
+      {
+        "text": "Add flour, cup by cup mixing in between each addition. You have enough flour when 1- the dough starts to pull away from the sides of the bowl, 2- the dough becomes tacky but not overly sticky in texture. Use the touch test (below) to determine if the dough has the right amount of flour. If it doesn’t have enough, add a little flour and knead. If it has too much flour, add a teaspoon of oil and knead. Do not add too much flour!",
+        "group": null
+      },
+      {
+        "text": "Touch test: after kneading the dough, touch it with 3 fingers. If a lot of dough sticks to your fingers, it needs more flour. If hardly any sticks to your fingers it’s just right. If it is dry and crumbly with pockets of visible flour, it has too much flour. Kneading the dough for a few extra minutes can help hydrate any excess flour.",
+        "group": null
+      },
+      {
+        "text": "Knead the dough for 10-15 minutes. Cover with a clean kitchen towel or with a bowl lid or with plastic wrap. Let rise until it has doubled in size (about one hour).",
+        "group": null
+      },
+      {
+        "text": "Punch down dough and dump onto a clean, floured surface. Divide into portions of either 3 loaves, 9 mini loaves, or 24-32 rolls. Form into the desired shape, and set on a greased cookie or greased loaf pan and cover with plastic wrap, a lid, or a clean dish towel. Allow to rise again until doubled in size. Preheat oven to 375° F for bread or 350° F for rolls.",
+        "group": null
+      },
+      {
+        "text": "Bake. - 3 large loaves bake at 375° F for 25-30 minutes or until the thermometer reads 180° F at the center of the loaf. - 9 mini loaves bake at 375° F for 22-25 minutes or until the thermometer reads 180° F at the center of the loaf.- 32 rolls (16 per cookie sheet) bake at 350° F for 17-20 minutes.- 24 rolls (12 per cookie sheet) bake at 350° F for 17-20 min",
+        "group": null
+      },
+      {
+        "text": "Remove from oven and let cool. Remove bread from bread pans and onto a cooling rack immediately so they don’t condensate and get soggy. Spread tops with melted butter if you want.",
+        "group": null
+      },
+      {
+        "text": "Let bread/ rolls cool completely, then they can be stored in twist tie bread storage bags.* They will last well at room temperature for 4-5 days, but remember that they do not have any preservatives in them so they may start to mold around day 7. I recommend freezing whatever won't be used within 4-5 days.",
+        "group": null
+      }
+    ],
+    "_warnings": [
+      "unlabelled block: split into 7 ingredient(s) / 10 step(s) by heuristic"
+    ]
+  },
+  {
+    "title": "UNTITLED",
+    "ingredients": [
+      {
+        "text": "4 tbsp unsalted softened butter",
+        "group": "Cajun butter🧈"
+      },
+      {
+        "text": "1/2 tsp seasoned Cajun",
+        "group": "Cajun butter🧈"
+      },
+      {
+        "text": "1 tsp parsley",
+        "group": "Cajun butter🧈"
+      },
+      {
+        "text": "2 tsp minced garlic",
+        "group": "Cajun butter🧈"
+      },
+      {
+        "text": "1 tsp lemon juice",
+        "group": "Cajun butter🧈"
+      },
+      {
+        "text": "1/2 tsp Dijon mustard",
+        "group": "Cajun butter🧈"
+      }
+    ],
+    "steps": [
+      {
+        "text": "Mix until combined (optional: add red pepper flakes for spice)",
+        "group": "Cajun butter🧈"
+      },
+      {
+        "text": "trim 2 steaks of choice into 1 inch pieces",
+        "group": "Cajun steak bites🥩"
+      },
+      {
+        "text": "season with 1 tbsp Worcestershire sauce and 1 tsp @kindersflavors buttery steakhouse seasoning",
+        "group": "Cajun steak bites🥩"
+      },
+      {
+        "text": "let steaks rest before cooking to avoid chewy steak bites **",
+        "group": "Cajun steak bites🥩"
+      },
+      {
+        "text": "cook in avocado oil on med/high heat",
+        "group": "Cajun steak bites🥩"
+      },
+      {
+        "text": "flip after 1-2 minutes",
+        "group": "Cajun steak bites🥩"
+      },
+      {
+        "text": "reduce heat and stir in 2 tbsp Cajun butter",
+        "group": "Cajun steak bites🥩"
+      },
+      {
+        "text": "toss steak bites 1 additional minute",
+        "group": "Cajun steak bites🥩"
+      },
+      {
+        "text": "remove steak and add asparagus",
+        "group": "Cajun steak bites🥩"
+      },
+      {
+        "text": "season asparagus with lemon juice, garlic powder, salt, pepper, & Parmesan",
+        "group": "Cajun steak bites🥩"
+      },
+      {
+        "text": "peel 2 large gold potatoes",
+        "group": "creamy Parmesan mashed potatoes🥔"
+      },
+      {
+        "text": "dice into 1 inch cubes",
+        "group": "creamy Parmesan mashed potatoes🥔"
+      },
+      {
+        "text": "boil in salted water",
+        "group": "creamy Parmesan mashed potatoes🥔"
+      },
+      {
+        "text": "drain water and mash",
+        "group": "creamy Parmesan mashed potatoes🥔"
+      },
+      {
+        "text": "stir in 1/2 cup heavy cream, 2 tbsp sour cream, 1/4 cup Parmesan cheese, 1/2 tbsp butter, salt, pepper, & garlic powder",
+        "group": "creamy Parmesan mashed potatoes🥔"
+      },
+      {
+        "text": "Add creamy Parmesan mashed potatoes to a bowl and top with Cajun butter steak bites🥩 Serve with asparagus, ciabatta, & garnish with parsley",
+        "group": "Assembly✨"
+      }
+    ],
+    "_warnings": [
+      "no bold title in source — needs a name",
+      "sub-section 'Cajun butter🧈': split into 6 ingredient(s) / 1 step(s) by heuristic",
+      "sub-section 'Cajun steak bites🥩': split into 0 ingredient(s) / 9 step(s) by heuristic",
+      "sub-section 'creamy Parmesan mashed potatoes🥔': split into 0 ingredient(s) / 5 step(s) by heuristic",
+      "sub-section 'Assembly✨': split into 0 ingredient(s) / 1 step(s) by heuristic"
+    ]
+  }
+]
