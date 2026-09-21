@@ -1,8 +1,7 @@
 // Prisma schema for the family recipe box.
 //
-// SQLite for local dev. Every model deliberately avoids Postgres/MySQL-only
-// native types, so moving to Postgres for deployment is a one-line change to
-// `provider` below plus a fresh migration.
+// Postgres, in dev and in production, so what runs locally is what deploys.
+// Models avoid provider-specific native types.
 
 generator client {
   provider = "prisma-client"
@@ -10,7 +9,7 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
 }
 
 model Recipe {

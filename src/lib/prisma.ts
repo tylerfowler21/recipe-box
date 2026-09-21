@@ -1,23 +1,19 @@
-import { PrismaBetterSqlite3 } from '@prisma/adapter-better-sqlite3'
 import { PrismaClient } from '@/generated/prisma/client'
+import { createAdapter } from './db-schema'
 
 /**
  * The single place a PrismaClient is constructed.
  *
- * Everything — app code, seed scripts, one-off tooling — goes through this
- * factory. Prisma's query engine targets whatever the *adapter* was built with
- * and ignores the connection string's own routing hints, so having exactly one
- * construction site is what keeps the ORM and any raw SQL pointed at the same
- * database.
+ * Everything — app code, the seed script, one-off tooling — goes through this
+ * factory, so the ORM and any raw SQL can never end up pointed at different
+ * schemas. See db-schema.ts for why that matters.
  */
 const globalForPrisma = globalThis as unknown as {
   prisma: PrismaClient | undefined
 }
 
 export function createPrismaClient() {
-  const url = process.env.DATABASE_URL
-  if (!url) throw new Error('DATABASE_URL is not set')
-  return new PrismaClient({ adapter: new PrismaBetterSqlite3({ url }) })
+  return new PrismaClient({ adapter: createAdapter() })
 }
 
 export const prisma = globalForPrisma.prisma ?? createPrismaClient()

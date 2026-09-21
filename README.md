@@ -9,22 +9,18 @@ plannable, and with a grocery list that fills itself from the week's meals.
 
 ```bash
 npm install
-npx prisma migrate dev     # creates prisma/dev.db
-npm run db:seed            # imports the 43 recipes
-npm run dev                # http://localhost:3100
+cp .env.example .env        # then fill in the three values
+npm run db:migrate          # apply migrations
+npm run db:seed             # import the 43 recipes
+npm run dev                 # http://localhost:3100
 ```
 
-Sign in with the value of `HOUSEHOLD_PASSWORD` in `.env` (currently
-`change-me` — **change it**). There are no individual accounts by design:
-one password, one shared recipe box.
+Sign in with the value of `HOUSEHOLD_PASSWORD`. There are no individual
+accounts by design: one password, one shared recipe box.
 
-`.env` needs three values:
-
-```env
-DATABASE_URL="file:./prisma/dev.db"
-SESSION_SECRET="..."        # already generated; any 32+ random bytes
-HOUSEHOLD_PASSWORD="..."    # what everyone types to get in
-```
+Postgres is used in dev and in production, so what runs locally is what
+deploys. The easiest local database is a branch of the same Neon project
+Vercel provisions — see below.
 
 ## The import
 
@@ -57,38 +53,57 @@ Filter to them with the "Needs a look" button on the recipes page.
 One recipe had no title at all — the Cajun steak bites pasted in from
 Instagram. It's named in `corrections.json`.
 
-## Deploying so it works on phones
+## Deploying to Vercel
 
-Two things must change first, and both need an account I can't create for you:
+Deployed from GitHub through Vercel's git integration, same as Links Up.
+Postgres and photo storage are both already wired up in the code; what's left
+is creating the accounts and pasting three values.
 
-**1. Swap SQLite for Postgres.** SQLite writes to a local file, which a
-serverless host either loses on every deploy or can't write at all.
+**1. Push to GitHub.** Make a new **private** repo (the recipes are family
+data), then:
 
-- Create a Postgres database (Neon and Vercel Postgres both have free tiers).
-- `npm install @prisma/adapter-pg pg` and drop `@prisma/adapter-better-sqlite3`.
-- In `prisma/schema.prisma`, change `provider = "sqlite"` to `"postgresql"`.
-- In `src/lib/prisma.ts`, swap `PrismaBetterSqlite3` for `PrismaPg`.
-- Delete `prisma/migrations/` and run `npx prisma migrate dev --name init`.
-- Re-run `npm run db:seed` against the new database.
+```bash
+git remote add origin git@github.com:tylerfowler21/recipe-box.git
+git push -u origin main
+```
 
-The schema deliberately avoids SQLite-only and Postgres-only column types, so
-nothing else needs touching.
+**2. Import it in Vercel.** New Project → pick the repo → Deploy. The first
+build will fail until the environment variables below exist; that's expected.
 
-> When you build the `PrismaPg` adapter, pass the schema explicitly:
-> `new PrismaPg(config, { schema })`. Prisma's query engine emits fully
-> qualified table names from the **adapter's** schema and ignores any
-> `search_path` or `?schema=` in the connection string — so a correct-looking
-> URL is not isolation. Keep `src/lib/prisma.ts` as the only place a client is
-> constructed.
+**3. Add Postgres.** Project → Storage → Create Database → Postgres. Vercel
+provisions a Neon database and injects `DATABASE_URL` into all environments
+automatically.
 
-**2. Move photo uploads off the local disk.** `src/app/api/upload/route.ts`
-writes to `public/uploads`, which is read-only on Vercel. Swap the `writeFile`
-call for `put()` from `@vercel/blob` (or any object store) and return its URL —
-the rest of the app only ever handles a URL string, so nothing else changes.
-Pasting an image URL already works everywhere.
+**4. Add Blob storage.** Project → Storage → Create → Blob. This injects
+`BLOB_READ_WRITE_TOKEN`. Without it the upload route falls back to the local
+filesystem, which is read-only on Vercel, so uploads would fail.
 
-Then set `DATABASE_URL`, `SESSION_SECRET` and `HOUSEHOLD_PASSWORD` in the
-host's environment and deploy.
+**5. Set the two secrets.** Project → Settings → Environment Variables:
+
+| Name | Value |
+| --- | --- |
+| `SESSION_SECRET` | `node -e "console.log(require('crypto').randomBytes(32).toString('base64url'))"` |
+| `HOUSEHOLD_PASSWORD` | whatever everyone in the house will type |
+
+**6. Migrate and seed the production database.** Copy `DATABASE_URL` from
+Vercel's Storage tab, then from your machine:
+
+```bash
+DATABASE_URL="<the production url>" npm run db:migrate
+DATABASE_URL="<the production url>" npm run db:seed
+```
+
+Then redeploy. Seeding is a one-time step — see the warning above about what
+re-seeding destroys.
+
+### Notes
+
+`postinstall` runs `prisma generate`, because `src/generated` is gitignored and
+Vercel builds from a clean clone.
+
+The app is fully server-rendered and every route reads cookies, so there is
+nothing to revalidate on a schedule and no build-time database access — the
+build succeeds without `DATABASE_URL` set.
 
 ## How it's put together
 
