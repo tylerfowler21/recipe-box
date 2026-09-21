@@ -20,6 +20,21 @@ const ALLOWED = new Map([
  * rest of the app only ever handles the returned URL, so neither path is
  * special-cased anywhere else.
  */
+/**
+ * Finds the Blob read-write token.
+ *
+ * Vercel names it BLOB_READ_WRITE_TOKEN by default, but prefixes it when the
+ * store was created with a custom environment-variable prefix — so matching on
+ * the suffix is what makes this work regardless of how the store was set up.
+ */
+function resolveBlobToken(): string | undefined {
+  if (process.env.BLOB_READ_WRITE_TOKEN) return process.env.BLOB_READ_WRITE_TOKEN
+  for (const [key, value] of Object.entries(process.env)) {
+    if (key.endsWith('BLOB_READ_WRITE_TOKEN') && value) return value
+  }
+  return undefined
+}
+
 export async function POST(request: Request) {
   if (!(await isSignedIn())) {
     return NextResponse.json({ error: 'Not signed in' }, { status: 401 })
@@ -42,11 +57,14 @@ export async function POST(request: Request) {
   // Name the file ourselves — never trust the client's filename on a path.
   const name = `${randomUUID()}.${ext}`
 
-  if (process.env.BLOB_READ_WRITE_TOKEN) {
+  const token = resolveBlobToken()
+
+  if (token) {
     try {
       const blob = await put(`recipes/${name}`, file, {
         access: 'public',
         contentType: file.type,
+        token,
       })
       return NextResponse.json({ url: blob.url })
     } catch (error) {
@@ -61,12 +79,16 @@ export async function POST(request: Request) {
   // Writing to disk only works where the filesystem is writable. On Vercel it
   // is not, so rather than failing with an opaque EROFS, say what's missing.
   if (process.env.VERCEL) {
+    // Name the BLOB_* variables that *are* present. Names only, never values —
+    // enough to tell a missing store from a prefixed token without leaking one.
+    const seen = Object.keys(process.env).filter((k) => /BLOB/i.test(k))
     return NextResponse.json(
       {
         error:
-          'Photo uploads are not configured: BLOB_READ_WRITE_TOKEN is missing. ' +
-          'Create a Blob store in the Vercel project, then redeploy so the ' +
-          'token reaches the function.',
+          'Photo uploads are not configured: no Blob read-write token found. ' +
+          'In Vercel, connect a Blob store to this project with "Add a ' +
+          'read-write token env var" ticked, then redeploy.',
+        blobVarsPresent: seen,
       },
       { status: 503 },
     )
