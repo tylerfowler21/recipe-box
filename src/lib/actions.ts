@@ -8,6 +8,7 @@ import { z } from 'zod'
 import { prisma } from '@/lib/prisma'
 import { slugify, buildSearchText } from '@/lib/recipes'
 import { suggestTags, TAG_KINDS } from '@/lib/tagging'
+import { isMealSlot } from '@/lib/meal-slots'
 import { importFromUrl, type ImportResult } from '@/lib/import-url'
 import { deleteReplacedPhoto, deleteStoredPhoto } from '@/lib/blob'
 import {
@@ -256,6 +257,7 @@ export async function planMeal(formData: FormData) {
   const noteText = String(formData.get('noteText') ?? '').trim()
 
   if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) return
+  if (!isMealSlot(slot)) return
   if (!recipeId && !noteText) return
 
   await prisma.mealPlanEntry.create({

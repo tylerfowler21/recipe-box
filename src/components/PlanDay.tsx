@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useState, useTransition } from 'react'
 import { planMeal, unplanMeal } from '@/lib/actions'
 import type { PlanEntry } from '@/lib/queries'
+import { MEAL_SLOTS } from '@/lib/meal-slots'
 
 export function PlanDay({
   date,
@@ -78,10 +79,11 @@ export function PlanDay({
           <input type="hidden" name="date" value={date} />
           <div className="flex flex-wrap gap-2">
             <select name="slot" className="field w-auto flex-none text-sm" defaultValue="dinner">
-              <option value="breakfast">Breakfast</option>
-              <option value="lunch">Lunch</option>
-              <option value="dinner">Dinner</option>
-              <option value="other">Other</option>
+              {MEAL_SLOTS.map((slot) => (
+                <option key={slot.value} value={slot.value}>
+                  {slot.label}
+                </option>
+              ))}
             </select>
             <select name="recipeId" className="field min-w-0 flex-1 text-sm" defaultValue="">
               <option value="">— pick a recipe —</option>

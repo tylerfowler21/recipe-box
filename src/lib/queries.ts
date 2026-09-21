@@ -1,5 +1,6 @@
 import 'server-only'
 import { prisma } from '@/lib/prisma'
+import { slotRank } from '@/lib/meal-slots'
 
 export type RecipeFilters = {
   q?: string
@@ -98,10 +99,22 @@ export function weekStart(date: Date) {
 export async function getWeekPlan(start: Date) {
   const end = new Date(start)
   end.setUTCDate(end.getUTCDate() + 7)
-  return prisma.mealPlanEntry.findMany({
+  const entries = await prisma.mealPlanEntry.findMany({
     where: { date: { gte: start, lt: end } },
     include: { recipe: { select: { title: true, slug: true, photoUrl: true } } },
-    orderBy: [{ date: 'asc' }, { position: 'asc' }],
+    orderBy: [{ date: 'asc' }, { position: 'asc' }, { createdAt: 'asc' }],
+  })
+
+  // Meals read in the order they're eaten, not the order they were added.
+  // Sorted here rather than in SQL because ordering by an arbitrary sequence of
+  // string values needs a CASE expression Prisma can't express, and a week of
+  // meals is far too small for that to be worth raw SQL.
+  return entries.sort((a, b) => {
+    const byDate = a.date.getTime() - b.date.getTime()
+    if (byDate !== 0) return byDate
+    const bySlot = slotRank(a.slot) - slotRank(b.slot)
+    if (bySlot !== 0) return bySlot
+    return a.position - b.position || a.createdAt.getTime() - b.createdAt.getTime()
   })
 }
 
