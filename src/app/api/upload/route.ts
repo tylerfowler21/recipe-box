@@ -43,15 +43,36 @@ export async function POST(request: Request) {
   const name = `${randomUUID()}.${ext}`
 
   if (process.env.BLOB_READ_WRITE_TOKEN) {
-    const blob = await put(`recipes/${name}`, file, {
-      access: 'public',
-      contentType: file.type,
-    })
-    return NextResponse.json({ url: blob.url })
+    try {
+      const blob = await put(`recipes/${name}`, file, {
+        access: 'public',
+        contentType: file.type,
+      })
+      return NextResponse.json({ url: blob.url })
+    } catch (error) {
+      // Surface the real reason instead of a bare 500 — an expired or
+      // wrong-project token looks identical to a network failure otherwise.
+      const detail = error instanceof Error ? error.message : String(error)
+      console.error('Blob upload failed:', detail)
+      return NextResponse.json({ error: `Upload failed: ${detail}` }, { status: 502 })
+    }
   }
 
-  // Local development without a blob store. Vercel's filesystem is read-only,
-  // so this branch never runs in production — the token is always set there.
+  // Writing to disk only works where the filesystem is writable. On Vercel it
+  // is not, so rather than failing with an opaque EROFS, say what's missing.
+  if (process.env.VERCEL) {
+    return NextResponse.json(
+      {
+        error:
+          'Photo uploads are not configured: BLOB_READ_WRITE_TOKEN is missing. ' +
+          'Create a Blob store in the Vercel project, then redeploy so the ' +
+          'token reaches the function.',
+      },
+      { status: 503 },
+    )
+  }
+
+  // Local development without a blob store.
   const { mkdir, writeFile } = await import('node:fs/promises')
   const path = await import('node:path')
   const dir = path.join(process.cwd(), 'public', 'uploads')
