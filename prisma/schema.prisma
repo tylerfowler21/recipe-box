@@ -18,8 +18,11 @@ model Recipe {
   slug        String  @unique
   description String?
   notes       String?
-  // Where it came from: "Grandma", an URL, "Instagram", etc.
+  // Where it came from, as a human reads it: "Grandma", "Serious Eats".
   source      String?
+  // The original link, when there was one. Kept separately from `source` so it
+  // can be rendered as a link without guessing whether `source` is a URL.
+  sourceUrl   String?
   servings    String?
   prepMinutes Int?
   cookMinutes Int?

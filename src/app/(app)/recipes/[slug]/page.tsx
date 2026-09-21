@@ -10,6 +10,7 @@ import {
   revokeShareLink,
 } from '@/lib/actions'
 import { StepList } from '@/components/StepList'
+import { IngredientList } from '@/components/IngredientList'
 import { RecipeActions } from '@/components/RecipeActions'
 import { ShareLinks } from '@/components/ShareLinks'
 
@@ -64,7 +65,20 @@ export default async function RecipePage({ params }: { params: Promise<{ slug: s
         <div className="text-ink-faint flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
           {time ? <span>{time}</span> : null}
           {recipe.servings ? <span>Serves {recipe.servings}</span> : null}
-          {recipe.source ? <span>from {recipe.source}</span> : null}
+          {recipe.source ? (
+            recipe.sourceUrl ? (
+              <a
+                href={recipe.sourceUrl}
+                target="_blank"
+                rel="noopener noreferrer nofollow"
+                className="hover:text-ink underline"
+              >
+                from {recipe.source} ↗
+              </a>
+            ) : (
+              <span>from {recipe.source}</span>
+            )
+          ) : null}
         </div>
 
         {recipe.tags.length ? (
@@ -109,24 +123,7 @@ export default async function RecipePage({ params }: { params: Promise<{ slug: s
           {recipe.ingredients.length === 0 ? (
             <p className="text-ink-faint text-sm">Not recorded yet.</p>
           ) : (
-            <div className="space-y-4">
-              {ingredientSections.map((section, i) => (
-                <div key={i}>
-                  {section.name ? (
-                    <h3 className="text-ink-faint mb-1.5 text-[11px] font-medium uppercase tracking-wide">
-                      {section.name}
-                    </h3>
-                  ) : null}
-                  <ul className="space-y-1.5">
-                    {section.items.map((ing) => (
-                      <li key={ing.id} className="border-rule border-b pb-1.5 text-[15px]">
-                        {ing.text}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
+            <IngredientList sections={ingredientSections} servings={recipe.servings} />
           )}
         </section>
 

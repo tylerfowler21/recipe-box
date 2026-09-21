@@ -49,6 +49,7 @@ export default async function EditRecipePage({
           prepMinutes: recipe.prepMinutes?.toString() ?? '',
           cookMinutes: recipe.cookMinutes?.toString() ?? '',
           photoUrl: recipe.photoUrl ?? '',
+          sourceUrl: recipe.sourceUrl ?? '',
           ingredients: asLines(recipe.ingredients),
           steps: asLines(recipe.steps),
           tags: recipe.tags.map((t) => t.tag.name).join(', '),

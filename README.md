@@ -96,6 +96,17 @@ DATABASE_URL="<the production url>" npm run db:seed
 Then redeploy. Seeding is a one-time step — see the warning above about what
 re-seeding destroys.
 
+### Notes on migrations
+
+`npm run db:migrate` sets `PRISMA_SCHEMA_DISABLE_ADVISORY_LOCK=true`, and
+`prisma.config.ts` points the CLI at Neon's **direct** endpoint (the pooled
+hostname without `-pooler`). Both are needed: the pooled endpoint runs pgbouncer
+in transaction mode, which can't hold the session-level advisory lock Prisma
+Migrate takes, and the failure surfaces as a misleading `P1002` connection
+timeout. Disabling the lock is safe here because only one person ever runs a
+migration. The running app still uses the pooled URL, which is what it should
+use.
+
 ### Notes
 
 `postinstall` runs `prisma generate`, because `src/generated` is gitignored and
@@ -128,6 +139,45 @@ in `src/lib/recipes.ts` is the single place that's done.
 Server Actions are reachable by direct POST, not just through the UI, so
 `src/proxy.ts` is treated as a redirect convenience only and every action calls
 `requireSession()` itself.
+
+## Adding a recipe from a link
+
+**Add from a link** (`/recipes/import`) takes a URL and fills the form in.
+
+Recipe sites and food blogs publish `schema.org/Recipe` as JSON-LD, so title,
+ingredients, steps, times, servings, photo and author are read straight off the
+page. Verified against Simply Recipes, AllRecipes, BBC Good Food and Budget
+Bytes.
+
+Instagram and Facebook are login-walled and block server-side fetching, so
+there is no honest way to extract a recipe from them. Those keep the link and
+ask you to paste the caption, which goes through `src/lib/recipe-text.ts` — the
+same line-scoring parser that split the Word document. TikTok and YouTube sit in
+between: both expose a public oEmbed endpoint, so the caption and thumbnail come
+across without any API key.
+
+### A note on fetching user-supplied URLs
+
+`src/lib/import-url.ts` treats every pasted link as hostile. It resolves the
+hostname and refuses private, loopback, link-local, CGNAT and multicast
+addresses — including `169.254.169.254`, the cloud metadata endpoint — follows
+redirects by hand so **every hop** is re-checked rather than just the first, and
+caps body size and time. Without that, "paste a link" is an invitation for the
+server to fetch anything on its private network.
+
+## Scaling a recipe
+
+Each recipe has a **Make ½× 1× 2× 3×** control that rescales the ingredient
+list in place. The original amount stays visible in grey alongside.
+
+Quantities are stored as free text ("1 1/2 cups flour", "⅓ c. butter", "3-4
+peaches"), because that's how they were written down. `src/lib/scale.ts` finds
+the quantity at the front of a line, multiplies it, and re-renders it in the
+same style — halving `⅓` gives `⅙`, not a decimal. Lines with no leading
+quantity ("Salt", "Dash of vanilla") are left alone: silently doubling "Salt"
+would be wrong, and guessing at mid-sentence numbers does more harm than good.
+
+Scaling is display-only and never saved.
 
 ## Sharing a recipe
 

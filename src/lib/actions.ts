@@ -8,6 +8,7 @@ import { z } from 'zod'
 import { prisma } from '@/lib/prisma'
 import { slugify, buildSearchText } from '@/lib/recipes'
 import { suggestTags, TAG_KINDS } from '@/lib/tagging'
+import { importFromUrl, type ImportResult } from '@/lib/import-url'
 import {
   SESSION_COOKIE,
   checkPassword,
@@ -63,6 +64,7 @@ const RecipeInput = z.object({
   description: z.string().trim().max(2000).optional(),
   notes: z.string().trim().max(5000).optional(),
   source: z.string().trim().max(200).optional(),
+  sourceUrl: z.string().trim().max(2000).optional(),
   servings: z.string().trim().max(50).optional(),
   prepMinutes: z.coerce.number().int().min(0).max(10000).optional(),
   cookMinutes: z.coerce.number().int().min(0).max(10000).optional(),
@@ -130,6 +132,7 @@ export async function createRecipe(
       description: d.description || null,
       notes: d.notes || null,
       source: d.source || null,
+      sourceUrl: d.sourceUrl || null,
       servings: d.servings || null,
       prepMinutes: d.prepMinutes ?? null,
       cookMinutes: d.cookMinutes ?? null,
@@ -184,6 +187,7 @@ export async function updateRecipe(
         description: d.description || null,
         notes: d.notes || null,
         source: d.source || null,
+        sourceUrl: d.sourceUrl || null,
         servings: d.servings || null,
         prepMinutes: d.prepMinutes ?? null,
         cookMinutes: d.cookMinutes ?? null,
@@ -251,6 +255,25 @@ export async function unplanMeal(id: string) {
   await requireSession()
   await prisma.mealPlanEntry.delete({ where: { id } })
   revalidatePath('/plan')
+}
+
+/* ---------------------------------------------------------------- import -- */
+
+/**
+ * Reads a recipe from a pasted link.
+ *
+ * Wrapped in a Server Action because the fetch — and the SSRF guarding around
+ * it — has to happen on the server; see import-url.ts. Returns a plain object
+ * so the caller can prefill the normal recipe form rather than saving blind.
+ */
+export async function lookupRecipeUrl(
+  _prev: ImportResult | undefined,
+  formData: FormData,
+): Promise<ImportResult> {
+  await requireSession()
+  const url = String(formData.get('url') ?? '').trim()
+  if (!url) return { kind: 'error', message: 'Paste a link first.' }
+  return importFromUrl(url)
 }
 
 /* ----------------------------------------------------------- share links -- */

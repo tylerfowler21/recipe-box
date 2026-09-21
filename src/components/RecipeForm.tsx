@@ -13,6 +13,7 @@ export type RecipeFormValues = {
   prepMinutes: string
   cookMinutes: string
   photoUrl: string
+  sourceUrl: string
   ingredients: string
   steps: string
   tags: string
@@ -39,6 +40,8 @@ export function RecipeForm({
 
   return (
     <form action={formAction} className="space-y-5">
+      <input type="hidden" name="sourceUrl" value={initial.sourceUrl} />
+
       <Field label="Title" required>
         <input name="title" defaultValue={initial.title} required className="field" />
       </Field>
