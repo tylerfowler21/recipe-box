@@ -9,6 +9,7 @@ import { prisma } from '@/lib/prisma'
 import { slugify, buildSearchText } from '@/lib/recipes'
 import { suggestTags, TAG_KINDS } from '@/lib/tagging'
 import { importFromUrl, type ImportResult } from '@/lib/import-url'
+import { deleteReplacedPhoto, deleteStoredPhoto } from '@/lib/blob'
 import {
   SESSION_COOKIE,
   checkPassword,
@@ -172,6 +173,12 @@ export async function updateRecipe(
   const tagIds = await resolveTagIds(tagNames)
   const slug = await uniqueSlug(d.title, id)
 
+  // Read the outgoing photo before the update overwrites it.
+  const before = await prisma.recipe.findUnique({
+    where: { id },
+    select: { photoUrl: true },
+  })
+
   // Ingredients, steps and tag links are fully replaced rather than diffed —
   // the edit form submits the complete list, so a diff would only add ways to
   // drift out of sync with what the user is looking at.
@@ -207,6 +214,10 @@ export async function updateRecipe(
     }),
   ])
 
+  // Only after the new photo is safely committed — a cleanup that ran first
+  // would delete the old image and then leave nothing if the save failed.
+  await deleteReplacedPhoto(before?.photoUrl, d.photoUrl || null)
+
   revalidatePath('/')
   revalidatePath(`/recipes/${slug}`)
   redirect(`/recipes/${slug}`)
@@ -214,7 +225,14 @@ export async function updateRecipe(
 
 export async function deleteRecipe(id: string) {
   await requireSession()
+  const recipe = await prisma.recipe.findUnique({
+    where: { id },
+    select: { photoUrl: true },
+  })
+
   await prisma.recipe.delete({ where: { id } })
+  await deleteStoredPhoto(recipe?.photoUrl)
+
   revalidatePath('/')
   redirect('/')
 }

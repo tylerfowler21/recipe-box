@@ -11,7 +11,8 @@
     "db:reset": "prisma migrate reset --force",
     "import:docx": "python3 scripts/parse-docx.py",
     "postinstall": "prisma generate",
-    "db:migrate": "PRISMA_SCHEMA_DISABLE_ADVISORY_LOCK=true prisma migrate deploy"
+    "db:migrate": "PRISMA_SCHEMA_DISABLE_ADVISORY_LOCK=true prisma migrate deploy",
+    "blobs:prune": "tsx scripts/prune-blobs.ts"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.10.0",

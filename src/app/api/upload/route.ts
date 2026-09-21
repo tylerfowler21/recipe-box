@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import { randomUUID } from 'node:crypto'
 import { put } from '@vercel/blob'
 import { isSignedIn } from '@/lib/auth'
+import { resolveBlobToken } from '@/lib/blob'
 
 const MAX_BYTES = 8 * 1024 * 1024
 const ALLOWED = new Map([
@@ -20,21 +21,6 @@ const ALLOWED = new Map([
  * rest of the app only ever handles the returned URL, so neither path is
  * special-cased anywhere else.
  */
-/**
- * Finds the Blob read-write token.
- *
- * Vercel names it BLOB_READ_WRITE_TOKEN by default, but prefixes it when the
- * store was created with a custom environment-variable prefix — so matching on
- * the suffix is what makes this work regardless of how the store was set up.
- */
-function resolveBlobToken(): string | undefined {
-  if (process.env.BLOB_READ_WRITE_TOKEN) return process.env.BLOB_READ_WRITE_TOKEN
-  for (const [key, value] of Object.entries(process.env)) {
-    if (key.endsWith('BLOB_READ_WRITE_TOKEN') && value) return value
-  }
-  return undefined
-}
-
 export async function POST(request: Request) {
   if (!(await isSignedIn())) {
     return NextResponse.json({ error: 'Not signed in' }, { status: 401 })

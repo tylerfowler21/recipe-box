@@ -179,6 +179,33 @@ would be wrong, and guessing at mid-sentence numbers does more harm than good.
 
 Scaling is display-only and never saved.
 
+## Photo cleanup
+
+Replacing a recipe's photo deletes the old one, and deleting a recipe deletes
+its photo. Without that, every replaced image stays in the Blob store forever.
+
+Only photos **this app stored** are ever deleted — `isManagedPhoto` in
+`src/lib/blob.ts` checks the URL is a Vercel Blob host or a local dev upload,
+so a pasted image URL is never touched. The hostname is parsed rather than
+matched as a substring, so neither `evil.com/public.blob.vercel-storage.com/x`
+nor `public.blob.vercel-storage.com.evil.com` slips through.
+
+Cleanup runs *after* the save commits, never before: deleting first would drop
+the old photo and leave nothing if the save then failed. It also swallows its
+own errors, because an orphaned blob is untidy while a save that fails over a
+cleanup hiccup is a real problem.
+
+For orphans that predate this, or anything the automatic path missed:
+
+```bash
+npm run blobs:prune              # report only
+npm run blobs:prune -- --apply   # actually delete
+```
+
+It needs `BLOB_READ_WRITE_TOKEN` in `.env`, copied from the Vercel project's
+environment variables. Adding it locally also makes local uploads go to Blob
+instead of `public/uploads`.
+
 ## Sharing a recipe
 
 Every recipe has a **Share** button that mints a read-only public link:
