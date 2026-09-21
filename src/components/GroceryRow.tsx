@@ -22,8 +22,8 @@ export function GroceryRow({ item }: { item: Item }) {
         aria-pressed={checked}
         className={
           checked
-            ? 'bg-accent flex size-5 shrink-0 items-center justify-center rounded-md text-[11px] text-white'
-            : 'border-rule size-5 shrink-0 rounded-md border'
+            ? 'bg-accent print-box flex size-5 shrink-0 items-center justify-center rounded-md text-[11px] text-white'
+            : 'border-rule print-box size-5 shrink-0 rounded-md border'
         }
       >
         {checked ? '✓' : ''}
@@ -33,7 +33,7 @@ export function GroceryRow({ item }: { item: Item }) {
       </span>
       <button
         onClick={() => startTransition(() => deleteGroceryItem(item.id))}
-        className="text-ink-faint hover:text-warn shrink-0 text-sm"
+        className="text-ink-faint hover:text-warn no-print shrink-0 text-sm"
         aria-label={`Remove ${item.text}`}
       >
         ×

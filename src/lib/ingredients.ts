@@ -64,6 +64,28 @@ const DESCRIPTORS = new Set([
   'skinless', 'of', 'a', 'an', 'the',
 ])
 
+/**
+ * Words that describe *preparation* and can be dropped from a shopping label.
+ *
+ * A strict subset of DESCRIPTORS. "ground", "fresh", "large" and "smoked" stay
+ * out of it deliberately: they group fine, but on a shopping list "ground beef"
+ * and "beef" are different purchases, so they must survive into the label.
+ */
+const PREP_ONLY = new Set([
+  'chopped', 'diced', 'minced', 'sliced', 'melted', 'softened', 'divided',
+  'beaten', 'shredded', 'grated', 'cooked', 'uncooked', 'peeled', 'drained',
+  'rinsed', 'cold', 'warm', 'halved', 'quartered', 'cubed', 'trimmed',
+  'crushed', 'room', 'temperature', 'optional',
+])
+
+/** Turns "Cold diced butter" into "Butter" without losing "ground beef". */
+function displayName(name: string): string {
+  const words = name.split(/\s+/).filter((w) => !PREP_ONLY.has(w.toLowerCase().replace(/[^a-z]/g, '')))
+  const cleaned = words.join(' ').replace(/\s+/g, ' ').trim()
+  const out = cleaned || name
+  return out.charAt(0).toUpperCase() + out.slice(1)
+}
+
 const NUMBER = `(?:\\d+\\s+\\d+\\s*/\\s*\\d+|\\d+\\s*/\\s*\\d+|\\d+[${GLYPHS}]|[${GLYPHS}]|\\d+(?:\\.\\d+)?)`
 const LEADING_QTY = new RegExp(`^\\s*(${NUMBER})(?:\\s*(?:-|–|to)\\s*(${NUMBER}))?\\s*`, 'i')
 
@@ -139,8 +161,13 @@ export function parseIngredient(text: string): ParsedIngredient {
     }
   }
 
-  // Everything after the first comma is preparation, not identity.
-  const name = rest.split(',')[0].replace(/\s+/g, ' ').trim()
+  // Everything after the first comma or dash is preparation, not identity —
+  // the family doc writes both "coconut oil, melted" and "green onions - minced".
+  const name = rest
+    .split(/,|\s[-–—]\s/)[0]
+    .replace(/\s+/g, ' ')
+    .replace(/[\s\-–—]+$/, '')
+    .trim()
 
   const key = name
     .toLowerCase()
@@ -222,9 +249,11 @@ export function combineIngredients(items: Input[]): CombinedLine[] {
   for (const entries of groups.values()) {
     // The shortest form is the one carrying the least preparation detail:
     // "Butter" over "Cold diced butter".
-    const name = entries
-      .map((e) => e.parsed.name)
-      .reduce((best, candidate) => (candidate.length < best.length ? candidate : best))
+    const name = displayName(
+      entries
+        .map((e) => e.parsed.name)
+        .reduce((best, candidate) => (candidate.length < best.length ? candidate : best)),
+    )
     const parts = entries.map((e) => ({
       text: e.item.text,
       sourceLabel: e.item.sourceLabel,

@@ -25,8 +25,22 @@ export function GroceryList({ items }: { items: Item[] }) {
   const open = items.filter((i) => !i.checked)
   const done = items.filter((i) => i.checked)
 
+  const heading = combined ? 'Shopping list' : 'Shopping list, by recipe'
+
   return (
     <div className="space-y-5">
+      <div className="print-title mb-4">
+        <h2 className="font-display text-xl font-semibold">{heading}</h2>
+        <p className="print-meta">
+          {open.length} items ·{' '}
+          {new Date().toLocaleDateString(undefined, {
+            weekday: 'long',
+            day: 'numeric',
+            month: 'long',
+          })}
+        </p>
+      </div>
+
       <div className="no-print flex items-center gap-1.5">
         <button
           onClick={() => setCombined(false)}
@@ -42,12 +56,59 @@ export function GroceryList({ items }: { items: Item[] }) {
         >
           Combined
         </button>
+
+        <button
+          onClick={() => window.print()}
+          className="text-ink-soft hover:text-ink ml-auto rounded-full px-2.5 py-1.5 text-sm"
+        >
+          Print
+        </button>
+        <CopyButton items={items} combined={combined} />
       </div>
 
-      {combined ? <CombinedView items={items} /> : <ByRecipeView open={open} />}
+      <div className="print-columns">
+        {combined ? <CombinedView items={items} /> : <ByRecipeView open={open} />}
+      </div>
 
       {!combined && done.length ? <DoneSection done={done} /> : null}
     </div>
+  )
+}
+
+/**
+ * Copies the list as plain text.
+ *
+ * No grocery service has a public "add these to my cart" API, so the practical
+ * route into any of them — Walmart, Instacart, a notes app, a text message — is
+ * still a list you can paste.
+ */
+function CopyButton({ items, combined }: { items: Item[]; combined: boolean }) {
+  const [copied, setCopied] = useState(false)
+
+  function asText() {
+    const outstanding = items.filter((i) => !i.checked)
+    if (!combined) return outstanding.map((i) => i.text).join('\n')
+    return combineIngredients(items)
+      .filter((l) => l.parts.some((p) => !p.checked))
+      .map((l) => (l.amount ? `${l.amount} ${l.name}` : l.name))
+      .join('\n')
+  }
+
+  return (
+    <button
+      onClick={async () => {
+        try {
+          await navigator.clipboard.writeText(asText())
+          setCopied(true)
+          setTimeout(() => setCopied(false), 2000)
+        } catch {
+          // Clipboard access can be refused; the print view still works.
+        }
+      }}
+      className="text-ink-soft hover:text-ink rounded-full px-2.5 py-1.5 text-sm"
+    >
+      {copied ? 'Copied' : 'Copy'}
+    </button>
   )
 }
 
@@ -137,8 +198,8 @@ function CombinedRow({
         aria-label={`${checked ? 'Uncheck' : 'Check off'} ${line.name}`}
         className={
           checked
-            ? 'bg-accent mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-md text-[11px] text-white'
-            : 'border-rule mt-0.5 size-5 shrink-0 rounded-md border'
+            ? 'bg-accent print-box mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-md text-[11px] text-white'
+            : 'border-rule print-box mt-0.5 size-5 shrink-0 rounded-md border'
         }
       >
         {checked ? '✓' : ''}
@@ -165,7 +226,7 @@ function CombinedRow({
       </div>
 
       {meals.length ? (
-        <span className="text-ink-faint shrink-0 text-right text-[11px] leading-tight">
+        <span className="text-ink-faint print-meta shrink-0 text-right text-[11px] leading-tight">
           {meals.join(', ')}
         </span>
       ) : null}

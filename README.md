@@ -207,6 +207,16 @@ Two details it gets right that are easy to get wrong:
 
 Ticking off a combined line checks every underlying row in one action.
 
+**Print** gives paper rather than a screenshot of the app: no cards or tinted
+backgrounds, black text, hollow tick boxes you can mark with a pen, two columns
+to halve the paper, and a dated heading. Whichever view is on screen is the one
+that prints.
+
+**Copy** puts the outstanding items on the clipboard as plain text. No grocery
+service offers a public "add these to my cart" API — Walmart's developer
+programme is for sellers, not shoppers — so a pasteable list is the honest
+route into a store app, a notes app or a text message.
+
 ## Photo cleanup
 
 Replacing a recipe's photo deletes the old one, and deleting a recipe deletes

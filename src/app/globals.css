@@ -95,4 +95,37 @@ body {
 @media print {
   .no-print { display: none !important; }
   body { background: #fff; color: #000; }
+
+  /* Printing a recipe or a list should give paper, not a screenshot of an app:
+     no boxed cards, no tinted backgrounds, black text at a readable size. */
+  * {
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+  a { text-decoration: none; color: #000; }
+
+  .print-title { display: block !important; }
+
+  /* Tick boxes have to survive as something you can actually tick with a pen. */
+  .print-box {
+    border: 1.25pt solid #000 !important;
+    border-radius: 2pt !important;
+    width: 11pt !important;
+    height: 11pt !important;
+    color: transparent !important;
+  }
+
+  /* A shopping list is short lines; two columns halves the paper. */
+  .print-columns {
+    column-count: 2;
+    column-gap: 28pt;
+  }
+  .print-columns > * {
+    break-inside: avoid;
+  }
+
+  .print-meta { color: #555 !important; font-size: 8pt !important; }
 }
+
+/* Only ever shown on paper. */
+.print-title { display: none; }
