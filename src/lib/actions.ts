@@ -1,5 +1,6 @@
 'use server'
 
+import { randomBytes } from 'node:crypto'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { cookies } from 'next/headers'
@@ -250,6 +251,42 @@ export async function unplanMeal(id: string) {
   await requireSession()
   await prisma.mealPlanEntry.delete({ where: { id } })
   revalidatePath('/plan')
+}
+
+/* ----------------------------------------------------------- share links -- */
+
+/**
+ * Mints a public read-only link to one recipe.
+ *
+ * The token is 32 bytes of randomness rather than the recipe's id or slug: the
+ * link is the only credential, so it has to be unguessable even by someone who
+ * knows every recipe name in the box.
+ */
+export async function createShareLink(recipeId: string) {
+  await requireSession()
+  const recipe = await prisma.recipe.findUnique({
+    where: { id: recipeId },
+    select: { slug: true },
+  })
+  if (!recipe) return
+
+  const token = randomBytes(32).toString('base64url')
+  await prisma.shareLink.create({ data: { token, recipeId } })
+  revalidatePath(`/recipes/${recipe.slug}`)
+}
+
+export async function revokeShareLink(id: string) {
+  await requireSession()
+  const link = await prisma.shareLink.findUnique({
+    where: { id },
+    include: { recipe: { select: { slug: true } } },
+  })
+  if (!link) return
+
+  // Kept as a revoked row rather than deleted, so an old link that stopped
+  // working can still be accounted for.
+  await prisma.shareLink.update({ where: { id }, data: { revokedAt: new Date() } })
+  revalidatePath(`/recipes/${link.recipe.slug}`)
 }
 
 /* --------------------------------------------------------------- grocery -- */

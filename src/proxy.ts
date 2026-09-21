@@ -9,6 +9,11 @@ import { SESSION_COOKIE, verifySessionValue } from '@/lib/auth'
  */
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl
+
+  // Shared recipe links carry their own secret in the URL and are meant for
+  // people without the household password, so they bypass the gate entirely.
+  if (pathname.startsWith('/share/')) return NextResponse.next()
+
   const signedIn = await verifySessionValue(request.cookies.get(SESSION_COOKIE)?.value)
 
   if (!signedIn && pathname !== '/login') {

@@ -18,7 +18,7 @@ export function RecipeActions({
   const [added, setAdded] = useState(false)
 
   return (
-    <div className="no-print flex flex-wrap items-center gap-2 pt-1">
+    <>
       <button
         onClick={() => startTransition(() => toggleFavoriteAction())}
         disabled={pending}
@@ -57,6 +57,6 @@ export function RecipeActions({
       >
         Print
       </button>
-    </div>
+    </>
   )
 }

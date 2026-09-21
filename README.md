@@ -129,6 +129,27 @@ Server Actions are reachable by direct POST, not just through the UI, so
 `src/proxy.ts` is treated as a redirect convenience only and every action calls
 `requireSession()` itself.
 
+## Sharing a recipe
+
+Every recipe has a **Share** button that mints a read-only public link:
+
+```
+https://<host>/share/<token>
+```
+
+Anyone with the link can read that one recipe without the household password.
+They get no navigation and no way to reach the rest of the collection, and the
+page is marked `noindex` so it won't turn up in search results.
+
+The token is 32 random bytes — the link *is* the credential, so it has to be
+unguessable even by someone who knows every recipe name. Links are listed on
+the recipe with a view count, and **Revoke** turns one off. A revoked link
+returns exactly the same 404 as a token that never existed, so revoking gives
+nothing away. Revoked rows are kept rather than deleted, so a link that stopped
+working can still be accounted for.
+
+`/share/` is the one path `src/proxy.ts` lets through unauthenticated.
+
 ## Tags
 
 Imported recipes were auto-tagged by keyword into 20 tags across four kinds

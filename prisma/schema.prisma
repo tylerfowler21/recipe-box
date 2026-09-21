@@ -39,6 +39,7 @@ model Recipe {
   tags         RecipeTag[]
   plannedFor   MealPlanEntry[]
   groceryItems GroceryItem[]
+  shareLinks   ShareLink[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -126,4 +127,27 @@ model GroceryItem {
   createdAt DateTime @default(now())
 
   @@index([checked])
+}
+
+/// A read-only public link to one recipe, for sending to someone who doesn't
+/// have the household password. The token is the secret: unguessable, and the
+/// only thing that grants access. Revoking sets `revokedAt` rather than
+/// deleting the row, so a link that stops working can still be explained.
+model ShareLink {
+  id       String @id @default(cuid())
+  token    String @unique
+  recipeId String
+
+  // Set when the link is turned off. A revoked link 404s like a missing one.
+  revokedAt DateTime?
+
+  // Light usage signal so you can see whether a link was ever opened.
+  viewCount    Int       @default(0)
+  lastViewedAt DateTime?
+
+  recipe Recipe @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@index([recipeId])
 }

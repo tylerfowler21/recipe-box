@@ -1,11 +1,17 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
-import { getRecipeBySlug } from '@/lib/queries'
+import { getRecipeBySlug, getShareLinks } from '@/lib/queries'
 import { groupBySection, formatTotalTime } from '@/lib/recipes'
-import { toggleFavorite, addRecipeToGroceryList } from '@/lib/actions'
+import {
+  toggleFavorite,
+  addRecipeToGroceryList,
+  createShareLink,
+  revokeShareLink,
+} from '@/lib/actions'
 import { StepList } from '@/components/StepList'
 import { RecipeActions } from '@/components/RecipeActions'
+import { ShareLinks } from '@/components/ShareLinks'
 
 export async function generateMetadata({
   params,
@@ -28,6 +34,8 @@ export default async function RecipePage({ params }: { params: Promise<{ slug: s
 
   const favorite = toggleFavorite.bind(null, recipe.id)
   const toGrocery = addRecipeToGroceryList.bind(null, recipe.id)
+  const share = createShareLink.bind(null, recipe.id)
+  const links = await getShareLinks(recipe.id)
 
   return (
     <article className="space-y-6">
@@ -73,12 +81,15 @@ export default async function RecipePage({ params }: { params: Promise<{ slug: s
           </div>
         ) : null}
 
-        <RecipeActions
-          slug={recipe.slug}
-          isFavorite={recipe.isFavorite}
-          toggleFavoriteAction={favorite}
-          addToGroceryAction={toGrocery}
-        />
+        <div className="no-print flex flex-wrap items-center gap-2 pt-1">
+          <RecipeActions
+            slug={recipe.slug}
+            isFavorite={recipe.isFavorite}
+            toggleFavoriteAction={favorite}
+            addToGroceryAction={toGrocery}
+          />
+          <ShareLinks links={links} createAction={share} revokeAction={revokeShareLink} />
+        </div>
       </header>
 
       {recipe.needsReview ? (

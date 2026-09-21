@@ -112,3 +112,46 @@ export async function getGroceryList() {
     orderBy: [{ checked: 'asc' }, { createdAt: 'asc' }],
   })
 }
+
+/**
+ * Looks up a share link by its token and records the view.
+ *
+ * A revoked link is treated exactly like one that never existed — the caller
+ * gets null and renders a 404, so revoking leaks nothing about what the link
+ * used to point at.
+ */
+export async function getSharedRecipe(token: string) {
+  const link = await prisma.shareLink.findUnique({
+    where: { token },
+    include: {
+      recipe: {
+        include: {
+          ingredients: { orderBy: { position: 'asc' } },
+          steps: { orderBy: { position: 'asc' } },
+          tags: { include: { tag: true } },
+        },
+      },
+    },
+  })
+
+  if (!link || link.revokedAt) return null
+
+  // Fire-and-forget: a failed counter update must never block the recipe.
+  prisma.shareLink
+    .update({
+      where: { id: link.id },
+      data: { viewCount: { increment: 1 }, lastViewedAt: new Date() },
+    })
+    .catch(() => {})
+
+  return link.recipe
+}
+
+export async function getShareLinks(recipeId: string) {
+  return prisma.shareLink.findMany({
+    where: { recipeId, revokedAt: null },
+    orderBy: { createdAt: 'desc' },
+  })
+}
+
+export type ShareLinkRow = Awaited<ReturnType<typeof getShareLinks>>[number]
