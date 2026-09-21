@@ -79,6 +79,11 @@ export async function getRecipeTitles() {
   })
 }
 
+/** Just the flagged count, for the nav badge — one COUNT per page view. */
+export async function getNeedsReviewCount() {
+  return prisma.recipe.count({ where: { needsReview: true } })
+}
+
 export async function getCounts() {
   const [total, needsReview, favorites] = await Promise.all([
     prisma.recipe.count(),

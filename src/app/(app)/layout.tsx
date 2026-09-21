@@ -1,11 +1,14 @@
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { isSignedIn } from '@/lib/auth'
+import { getNeedsReviewCount } from '@/lib/queries'
 import { NavTabs } from '@/components/NavTabs'
 
 export default async function AppLayout({ children }: { children: React.ReactNode }) {
   // Proxy already redirected signed-out visitors; this is the authoritative check.
   if (!(await isSignedIn())) redirect('/login')
+
+  const needsReview = await getNeedsReviewCount()
 
   return (
     <div className="min-h-dvh">
@@ -17,7 +20,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
             <span className="ml-1.5 hidden sm:inline">Recipe Box</span>
             <span className="sr-only">Recipe Box — home</span>
           </Link>
-          <NavTabs />
+          <NavTabs needsReviewCount={needsReview} />
         </div>
       </header>
       <main className="mx-auto max-w-5xl px-4 pb-24 pt-5">{children}</main>
