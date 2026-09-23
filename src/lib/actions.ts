@@ -277,6 +277,145 @@ export async function unplanMeal(id: string) {
   revalidatePath('/plan')
 }
 
+/* ----------------------------------------------------------------- meals -- */
+
+const MealInput = z.object({
+  name: z.string().trim().min(1, 'Give the meal a name').max(200),
+  description: z.string().trim().max(2000).optional(),
+  photoUrl: z.string().trim().max(2000).optional(),
+  // Recipe ids arrive as repeated form fields, in the order they were picked.
+  recipeIds: z.array(z.string()).min(1, 'Pick at least one recipe'),
+})
+
+async function uniqueMealSlug(name: string, excludeId?: string) {
+  const base = slugify(name)
+  let slug = base
+  let n = 2
+  for (;;) {
+    const existing = await prisma.meal.findUnique({ where: { slug }, select: { id: true } })
+    if (!existing || existing.id === excludeId) return slug
+    slug = `${base}-${n++}`
+  }
+}
+
+function parseMealForm(formData: FormData) {
+  return MealInput.safeParse({
+    name: formData.get('name'),
+    description: formData.get('description') ?? undefined,
+    photoUrl: formData.get('photoUrl') ?? undefined,
+    recipeIds: formData.getAll('recipeIds').map(String).filter(Boolean),
+  })
+}
+
+export async function createMeal(
+  _prev: { error?: string } | undefined,
+  formData: FormData,
+) {
+  await requireSession()
+  const parsed = parseMealForm(formData)
+  if (!parsed.success) return { error: parsed.error.issues[0]?.message ?? 'Invalid meal' }
+  const d = parsed.data
+
+  const meal = await prisma.meal.create({
+    data: {
+      name: d.name,
+      slug: await uniqueMealSlug(d.name),
+      description: d.description || null,
+      photoUrl: d.photoUrl || null,
+      recipes: {
+        create: d.recipeIds.map((recipeId, position) => ({ recipeId, position })),
+      },
+    },
+  })
+
+  revalidatePath('/meals')
+  redirect(`/meals/${meal.slug}`)
+}
+
+export async function updateMeal(
+  id: string,
+  _prev: { error?: string } | undefined,
+  formData: FormData,
+) {
+  await requireSession()
+  const parsed = parseMealForm(formData)
+  if (!parsed.success) return { error: parsed.error.issues[0]?.message ?? 'Invalid meal' }
+  const d = parsed.data
+  const slug = await uniqueMealSlug(d.name, id)
+
+  // The form submits the full set, so links are replaced rather than diffed.
+  await prisma.$transaction([
+    prisma.mealRecipe.deleteMany({ where: { mealId: id } }),
+    prisma.meal.update({
+      where: { id },
+      data: {
+        name: d.name,
+        slug,
+        description: d.description || null,
+        photoUrl: d.photoUrl || null,
+        recipes: {
+          create: d.recipeIds.map((recipeId, position) => ({ recipeId, position })),
+        },
+      },
+    }),
+  ])
+
+  revalidatePath('/meals')
+  revalidatePath(`/meals/${slug}`)
+  redirect(`/meals/${slug}`)
+}
+
+export async function deleteMeal(id: string) {
+  await requireSession()
+  const meal = await prisma.meal.findUnique({ where: { id }, select: { photoUrl: true } })
+  await prisma.meal.delete({ where: { id } })
+  // Recipes are untouched — deleting a meal only forgets that they go together.
+  await deleteStoredPhoto(meal?.photoUrl)
+  revalidatePath('/meals')
+  redirect('/meals')
+}
+
+/** Plans every recipe in a meal into the same slot, in one go. */
+export async function planWholeMeal(formData: FormData) {
+  await requireSession()
+  const date = String(formData.get('date') ?? '')
+  const slot = String(formData.get('slot') ?? 'dinner')
+  const mealId = String(formData.get('mealId') ?? '')
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) return
+  if (!isMealSlot(slot) || !mealId) return
+
+  const meal = await prisma.meal.findUnique({
+    where: { id: mealId },
+    include: { recipes: { orderBy: { position: 'asc' } } },
+  })
+  if (!meal) return
+
+  await prisma.mealPlanEntry.createMany({
+    data: meal.recipes.map((link, position) => ({
+      date: new Date(`${date}T00:00:00.000Z`),
+      slot,
+      recipeId: link.recipeId,
+      mealId: meal.id,
+      position,
+    })),
+  })
+  revalidatePath('/plan')
+}
+
+/** Sends every recipe in a meal to the grocery list. */
+export async function addMealToGroceryList(mealId: string) {
+  await requireSession()
+  const meal = await prisma.meal.findUnique({
+    where: { id: mealId },
+    include: { recipes: { orderBy: { position: 'asc' } } },
+  })
+  if (!meal) return
+  for (const link of meal.recipes) {
+    await addRecipeToGroceryList(link.recipeId)
+  }
+  revalidatePath('/grocery')
+}
+
 /* ---------------------------------------------------------------- import -- */
 
 /**

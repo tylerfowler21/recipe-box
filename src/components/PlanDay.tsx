@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useRef, useState, useTransition } from 'react'
-import { planMeal, unplanMeal } from '@/lib/actions'
+import { planMeal, planWholeMeal, unplanMeal } from '@/lib/actions'
 import type { PlanEntry } from '@/lib/queries'
 import { MEAL_SLOTS, slotRank, type MealSlot } from '@/lib/meal-slots'
 
@@ -12,18 +12,21 @@ export function PlanDay({
   isToday,
   entries,
   recipes,
+  meals,
 }: {
   date: string
   label: string
   isToday: boolean
   entries: PlanEntry[]
   recipes: { id: string; title: string; slug: string }[]
+  meals: { id: string; name: string; slug: string; _count: { recipes: number } }[]
 }) {
   const [adding, setAdding] = useState(false)
   // Kept across submissions so adding a dressing straight after the salad
   // doesn't mean re-picking "Dinner" every time.
   const [slot, setSlot] = useState<MealSlot>('dinner')
   const [justAdded, setJustAdded] = useState<string | null>(null)
+  const [mealId, setMealId] = useState('')
   const [pending, startTransition] = useTransition()
   const formRef = useRef<HTMLFormElement>(null)
 
@@ -153,6 +156,44 @@ export function PlanDay({
               ))}
             </select>
           </div>
+
+          {meals.length ? (
+            <div className="flex gap-2">
+              <select
+                value={mealId}
+                onChange={(e) => setMealId(e.target.value)}
+                aria-label="Add a whole meal"
+                className="field min-w-0 flex-1 text-sm"
+              >
+                <option value="">— or a whole meal —</option>
+                {meals.map((m) => (
+                  <option key={m.id} value={m.id}>
+                    {m.name} ({m._count.recipes})
+                  </option>
+                ))}
+              </select>
+              <button
+                type="button"
+                disabled={!mealId || pending}
+                onClick={() => {
+                  const meal = meals.find((m) => m.id === mealId)
+                  if (!meal) return
+                  const data = new FormData()
+                  data.set('date', date)
+                  data.set('slot', slot)
+                  data.set('mealId', mealId)
+                  startTransition(async () => {
+                    await planWholeMeal(data)
+                    setJustAdded(`${meal.name} (${meal._count.recipes} recipes)`)
+                    setMealId('')
+                  })
+                }}
+                className="bg-accent shrink-0 rounded-[10px] px-3 py-2 text-sm font-medium text-white disabled:opacity-60"
+              >
+                Add meal
+              </button>
+            </div>
+          ) : null}
           <div className="flex gap-2">
             <input
               name="noteText"

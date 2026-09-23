@@ -3,6 +3,7 @@ import { listRecipes, getAllTags, getCounts } from '@/lib/queries'
 import { SearchBar } from '@/components/SearchBar'
 import { TagFilter } from '@/components/TagFilter'
 import { RecipeGrid } from '@/components/RecipeGrid'
+import { ViewSwitch } from '@/components/ViewSwitch'
 
 function asArray(v: string | string[] | undefined) {
   if (!v) return []
@@ -46,6 +47,8 @@ export default async function RecipesPage({
           {recipes.length} of {counts.total}
         </p>
       </div>
+
+      <ViewSwitch current="recipes" />
 
       <SearchBar />
 

@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { getWeekPlan, getRecipeTitles, weekStart } from '@/lib/queries'
+import { getWeekPlan, getRecipeTitles, getMealTitles, weekStart } from '@/lib/queries'
 import { addWeekToGroceryList } from '@/lib/actions'
 import { PlanDay } from '@/components/PlanDay'
 
@@ -22,7 +22,11 @@ export default async function PlanPage({
   const anchor = week && /^\d{4}-\d{2}-\d{2}$/.test(week) ? new Date(`${week}T00:00:00Z`) : new Date()
   const start = weekStart(anchor)
 
-  const [entries, recipes] = await Promise.all([getWeekPlan(start), getRecipeTitles()])
+  const [entries, recipes, meals] = await Promise.all([
+    getWeekPlan(start),
+    getRecipeTitles(),
+    getMealTitles(),
+  ])
 
   const days = Array.from({ length: 7 }, (_, i) => {
     const d = new Date(start)
@@ -74,6 +78,7 @@ export default async function PlanPage({
             isToday={ISO(day) === today}
             entries={entries.filter((e) => ISO(e.date) === ISO(day))}
             recipes={recipes}
+            meals={meals}
           />
         ))}
       </div>

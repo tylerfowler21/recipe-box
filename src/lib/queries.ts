@@ -173,3 +173,60 @@ export async function getShareLinks(recipeId: string) {
 }
 
 export type ShareLinkRow = Awaited<ReturnType<typeof getShareLinks>>[number]
+
+/* ------------------------------------------------------------------ meals -- */
+
+export async function listMeals() {
+  return prisma.meal.findMany({
+    include: {
+      recipes: {
+        orderBy: { position: 'asc' },
+        include: {
+          recipe: { select: { id: true, title: true, slug: true, photoUrl: true } },
+        },
+      },
+    },
+    orderBy: { name: 'asc' },
+  })
+}
+
+export type MealCard = Awaited<ReturnType<typeof listMeals>>[number]
+
+export async function getMealBySlug(slug: string) {
+  return prisma.meal.findUnique({
+    where: { slug },
+    include: {
+      recipes: {
+        orderBy: { position: 'asc' },
+        include: {
+          recipe: {
+            select: {
+              id: true,
+              title: true,
+              slug: true,
+              photoUrl: true,
+              description: true,
+              prepMinutes: true,
+              cookMinutes: true,
+              _count: { select: { ingredients: true } },
+            },
+          },
+        },
+      },
+    },
+  })
+}
+
+export type MealDetail = NonNullable<Awaited<ReturnType<typeof getMealBySlug>>>
+
+/** Just names and ids, for pickers. */
+export async function getMealTitles() {
+  return prisma.meal.findMany({
+    select: { id: true, name: true, slug: true, _count: { select: { recipes: true } } },
+    orderBy: { name: 'asc' },
+  })
+}
+
+export async function getMealCount() {
+  return prisma.meal.count()
+}

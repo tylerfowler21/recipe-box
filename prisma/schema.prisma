@@ -43,6 +43,7 @@ model Recipe {
   plannedFor   MealPlanEntry[]
   groceryItems GroceryItem[]
   shareLinks   ShareLink[]
+  meals        MealRecipe[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -96,6 +97,39 @@ model RecipeTag {
   @@index([tagId])
 }
 
+/// A named combination of recipes eaten together — "Costa Vida Night" is the
+/// pulled pork, its dressing and the chips. Recipes stay independent and can
+/// belong to any number of meals; this only records that they go together.
+model Meal {
+  id          String  @id @default(cuid())
+  name        String
+  slug        String  @unique
+  description String?
+  photoUrl    String?
+
+  recipes    MealRecipe[]
+  plannedFor MealPlanEntry[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([name])
+}
+
+model MealRecipe {
+  mealId   String
+  recipeId String
+  /// Free text for the component's role: "the dressing", "on the side".
+  note     String?
+  position Int     @default(0)
+
+  meal   Meal   @relation(fields: [mealId], references: [id], onDelete: Cascade)
+  recipe Recipe @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+
+  @@id([mealId, recipeId])
+  @@index([recipeId])
+}
+
 model MealPlanEntry {
   id   String   @id @default(cuid())
   // Midnight UTC of the planned day; the app treats this as a plain date.
@@ -107,7 +141,13 @@ model MealPlanEntry {
   noteText String?
   position Int     @default(0)
 
+  // Set when this entry was added as part of a saved meal, so the plan can show
+  // the meal's name over its components and remove them together. Entries stay
+  // one-per-recipe so a single component can still be dropped on its own.
+  mealId String?
+
   recipe Recipe? @relation(fields: [recipeId], references: [id], onDelete: SetNull)
+  meal   Meal?   @relation(fields: [mealId], references: [id], onDelete: SetNull)
 
   createdAt DateTime @default(now())
 

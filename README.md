@@ -179,6 +179,23 @@ would be wrong, and guessing at mid-sentence numbers does more harm than good.
 
 Scaling is display-only and never saved.
 
+## Meals
+
+A **meal** is a named set of recipes eaten together — "Costa Vida Night" is the
+pulled pork, its dressing and the chips. The landing page switches between
+**Recipes** and **Meals**.
+
+Recipes stay independent: a meal only records that they go together, so one
+recipe can belong to any number of meals and deleting a meal leaves every
+recipe untouched. The order you pick them in is the order they appear, so the
+main comes before the dressing.
+
+Planning a meal creates one plan entry per recipe, all in the same slot, each
+tagged with the meal it came from. Keeping them as separate entries means a
+single component can still be dropped without unpicking the whole dinner.
+Sending a meal to the grocery list brings every component's ingredients, which
+the Combined view then totals across them.
+
 ## Meal planning
 
 A meal can be several recipes. A pork salad and its dressing, a main and its
