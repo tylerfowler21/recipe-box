@@ -72,9 +72,11 @@ export function PlanDay({
                 {slotEntries.map((entry) => (
                   <li key={entry.id} className="flex items-start gap-2 text-[15px]">
                     {entry.recipe ? (
+                      // A dotted underline that is always present, because
+                      // hover-only affordances tell a phone user nothing.
                       <Link
                         href={`/recipes/${entry.recipe.slug}`}
-                        className="min-w-0 flex-1 hover:underline"
+                        className="decoration-ink-faint hover:decoration-accent hover:text-accent min-w-0 flex-1 py-0.5 underline decoration-dotted underline-offset-4 transition-colors"
                       >
                         {entry.recipe.title}
                       </Link>
