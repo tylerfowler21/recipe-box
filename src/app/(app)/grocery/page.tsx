@@ -1,6 +1,7 @@
 import { getGroceryList } from '@/lib/queries'
 import { addGroceryItem, clearCheckedGroceryItems } from '@/lib/actions'
 import { GroceryList } from '@/components/GroceryList'
+import { ClearGroceryList } from '@/components/ClearGroceryList'
 
 export const metadata = { title: 'Grocery list — Recipe Box' }
 
@@ -13,7 +14,7 @@ export default async function GroceryPage() {
     <div className="mx-auto max-w-2xl space-y-5">
       <div className="flex flex-wrap items-baseline justify-between gap-2">
         <h1 className="font-display text-2xl font-semibold tracking-tight">Grocery list</h1>
-        <div className="flex items-baseline gap-3">
+        <div className="flex flex-wrap items-baseline gap-3">
           <p className="text-ink-faint text-sm">{open.length} to get</p>
           {done.length ? (
             <form action={clearCheckedGroceryItems}>
@@ -21,6 +22,9 @@ export default async function GroceryPage() {
                 Clear {done.length} done
               </button>
             </form>
+          ) : null}
+          {items.length ? (
+            <ClearGroceryList total={items.length} outstanding={open.length} />
           ) : null}
         </div>
       </div>

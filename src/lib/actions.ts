@@ -364,6 +364,13 @@ export async function deleteGroceryItem(id: string) {
   revalidatePath('/grocery')
 }
 
+/** Empties the whole list, checked or not. Confirmed in the UI first. */
+export async function clearGroceryList() {
+  await requireSession()
+  await prisma.groceryItem.deleteMany()
+  revalidatePath('/grocery')
+}
+
 export async function clearCheckedGroceryItems() {
   await requireSession()
   await prisma.groceryItem.deleteMany({ where: { checked: true } })

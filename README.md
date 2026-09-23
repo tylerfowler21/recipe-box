@@ -223,6 +223,11 @@ Two details it gets right that are easy to get wrong:
 
 Ticking off a combined line checks every underlying row in one action.
 
+**Clear done** removes the ticked items — the normal "back from the shop"
+move. **Clear all** empties the list outright and asks first, naming how many
+items and how many of those you hadn't got yet, since there's no undo and it
+sits next to the harmless one.
+
 **Print** gives paper rather than a screenshot of the app: no cards or tinted
 backgrounds, black text, hollow tick boxes you can mark with a pen, two columns
 to halve the paper, and a dated heading. Whichever view is on screen is the one
