@@ -179,6 +179,22 @@ would be wrong, and guessing at mid-sentence numbers does more harm than good.
 
 Scaling is display-only and never saved.
 
+## Meal planning
+
+A meal can be several recipes. A pork salad and its dressing, a main and its
+sides — they go in the same slot and render under one heading with a count,
+rather than repeating "Dinner" down the day.
+
+The add form stays open after each addition and keeps the slot it was set to,
+because adding a dressing straight after the salad is the common case.
+
+That form handles its own `onSubmit` rather than using the `action` prop.
+React resets a form automatically once its action resolves, and that DOM reset
+knocks a *controlled* `<select>` back to its first option without React's state
+changing — so the slot silently reverted to breakfast and the second recipe of
+a meal landed at the wrong time of day. Owning the submit means owning exactly
+which fields get cleared.
+
 ## The grocery list
 
 Two views of the same rows:

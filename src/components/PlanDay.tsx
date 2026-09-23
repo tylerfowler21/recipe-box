@@ -1,10 +1,10 @@
 'use client'
 
 import Link from 'next/link'
-import { useState, useTransition } from 'react'
+import { useRef, useState, useTransition } from 'react'
 import { planMeal, unplanMeal } from '@/lib/actions'
 import type { PlanEntry } from '@/lib/queries'
-import { MEAL_SLOTS } from '@/lib/meal-slots'
+import { MEAL_SLOTS, slotRank, type MealSlot } from '@/lib/meal-slots'
 
 export function PlanDay({
   date,
@@ -20,7 +20,24 @@ export function PlanDay({
   recipes: { id: string; title: string; slug: string }[]
 }) {
   const [adding, setAdding] = useState(false)
-  const [, startTransition] = useTransition()
+  // Kept across submissions so adding a dressing straight after the salad
+  // doesn't mean re-picking "Dinner" every time.
+  const [slot, setSlot] = useState<MealSlot>('dinner')
+  const [justAdded, setJustAdded] = useState<string | null>(null)
+  const [pending, startTransition] = useTransition()
+  const formRef = useRef<HTMLFormElement>(null)
+
+  // One meal can be several recipes — a main and its dressing, a roast and its
+  // sides — so entries are grouped under a single slot heading rather than
+  // repeating "Dinner" down the day.
+  const bySlot = new Map<string, PlanEntry[]>()
+  for (const entry of entries) {
+    bySlot.set(entry.slot, [...(bySlot.get(entry.slot) ?? []), entry])
+  }
+  const grouped = [...bySlot.entries()].sort(([a], [b]) => slotRank(a) - slotRank(b))
+
+  const labelFor = (value: string) =>
+    MEAL_SLOTS.find((s) => s.value === value)?.label ?? value
 
   return (
     <section
@@ -44,44 +61,84 @@ export function PlanDay({
         </button>
       </div>
 
-      {entries.length ? (
-        <ul className="mt-2.5 space-y-1.5">
-          {entries.map((entry) => (
-            <li key={entry.id} className="flex items-center gap-2 text-[15px]">
-              <span className="text-ink-faint w-16 shrink-0 text-xs capitalize">{entry.slot}</span>
-              {entry.recipe ? (
-                <Link href={`/recipes/${entry.recipe.slug}`} className="flex-1 hover:underline">
-                  {entry.recipe.title}
-                </Link>
-              ) : (
-                <span className="text-ink-soft flex-1 italic">{entry.noteText}</span>
-              )}
-              <button
-                onClick={() => startTransition(() => unplanMeal(entry.id))}
-                className="text-ink-faint hover:text-warn shrink-0 text-sm"
-                aria-label="Remove from plan"
-              >
-                ×
-              </button>
-            </li>
+      {grouped.length ? (
+        <div className="mt-2.5 space-y-2.5">
+          {grouped.map(([slotValue, slotEntries]) => (
+            <div key={slotValue} className="flex gap-2">
+              <span className="text-ink-faint w-16 shrink-0 pt-0.5 text-xs">
+                {labelFor(slotValue)}
+              </span>
+              <ul className="min-w-0 flex-1 space-y-1">
+                {slotEntries.map((entry) => (
+                  <li key={entry.id} className="flex items-start gap-2 text-[15px]">
+                    {entry.recipe ? (
+                      <Link
+                        href={`/recipes/${entry.recipe.slug}`}
+                        className="min-w-0 flex-1 hover:underline"
+                      >
+                        {entry.recipe.title}
+                      </Link>
+                    ) : (
+                      <span className="text-ink-soft min-w-0 flex-1 italic">{entry.noteText}</span>
+                    )}
+                    <button
+                      onClick={() => startTransition(() => unplanMeal(entry.id))}
+                      className="text-ink-faint hover:text-warn shrink-0 text-sm leading-tight"
+                      aria-label={`Remove ${entry.recipe?.title ?? entry.noteText} from ${labelFor(slotValue)}`}
+                    >
+                      ×
+                    </button>
+                  </li>
+                ))}
+                {slotEntries.length > 1 ? (
+                  <li className="text-ink-faint text-[11px]">
+                    {slotEntries.length} things in this meal
+                  </li>
+                ) : null}
+              </ul>
+            </div>
           ))}
-        </ul>
+        </div>
       ) : null}
 
       {adding ? (
         <form
-          action={async (formData) => {
-            await planMeal(formData)
-            setAdding(false)
+          ref={formRef}
+          onSubmit={(event) => {
+            // Submitted by hand rather than via the `action` prop: React resets
+            // a form automatically once its action resolves, and that DOM reset
+            // knocks the controlled slot <select> back to its first option
+            // without React's state changing — so the next add silently landed
+            // in breakfast. Owning the submit means owning what gets cleared.
+            event.preventDefault()
+            const form = event.currentTarget
+            const formData = new FormData(form)
+            const picked = recipes.find((r) => r.id === formData.get('recipeId'))
+            const note = String(formData.get('noteText') ?? '').trim()
+            if (!picked && !note) return
+
+            startTransition(async () => {
+              await planMeal(formData)
+              setJustAdded(picked?.title ?? note)
+              const recipeSelect = form.elements.namedItem('recipeId') as HTMLSelectElement | null
+              const noteInput = form.elements.namedItem('noteText') as HTMLInputElement | null
+              if (recipeSelect) recipeSelect.value = ''
+              if (noteInput) noteInput.value = ''
+            })
           }}
           className="mt-3 space-y-2"
         >
           <input type="hidden" name="date" value={date} />
           <div className="flex flex-wrap gap-2">
-            <select name="slot" className="field w-auto flex-none text-sm" defaultValue="dinner">
-              {MEAL_SLOTS.map((slot) => (
-                <option key={slot.value} value={slot.value}>
-                  {slot.label}
+            <select
+              name="slot"
+              value={slot}
+              onChange={(e) => setSlot(e.target.value as MealSlot)}
+              className="field w-auto flex-none text-sm"
+            >
+              {MEAL_SLOTS.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
                 </option>
               ))}
             </select>
@@ -102,11 +159,17 @@ export function PlanDay({
             />
             <button
               type="submit"
-              className="bg-accent shrink-0 rounded-[10px] px-3 py-2 text-sm font-medium text-white"
+              disabled={pending}
+              className="bg-accent shrink-0 rounded-[10px] px-3 py-2 text-sm font-medium text-white disabled:opacity-60"
             >
-              Add
+              {pending ? 'Adding…' : 'Add'}
             </button>
           </div>
+          <p className="text-ink-faint text-[11px]">
+            {justAdded
+              ? `Added ${justAdded} to ${labelFor(slot)}. Add another for the same meal, or Close.`
+              : `Add as many as the meal needs — a main and its dressing both go under ${labelFor(slot)}.`}
+          </p>
         </form>
       ) : null}
     </section>
