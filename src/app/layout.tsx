@@ -14,6 +14,13 @@ const workSans = Work_Sans({ subsets: ['latin'], variable: '--font-work-sans' })
 export const metadata: Metadata = {
   title: 'Recipe Box',
   description: 'The family recipe collection — searchable, organised, and on every phone.',
+  // Saved to a home screen, it opens without Safari's chrome and keeps the
+  // status bar on the app's own paper colour rather than white.
+  appleWebApp: {
+    capable: true,
+    title: 'Recipes',
+    statusBarStyle: 'default',
+  },
 }
 
 export const viewport: Viewport = {
