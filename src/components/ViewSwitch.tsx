@@ -7,9 +7,9 @@ import Link from 'next/link'
  * URL, its own filters and its own back-button history.
  */
 export function ViewSwitch({ current }: { current: 'recipes' | 'meals' }) {
-  const base = 'rounded-full px-3 py-1.5 text-sm'
-  const on = `bg-accent font-medium text-white ${base}`
-  const off = `bg-raised border-rule text-ink-soft border ${base}`
+  const base = 'rounded-full px-3.5 py-1.5 text-[13px] transition-colors'
+  const on = `bg-ink text-paper font-medium ${base}`
+  const off = `border-rule-strong text-ink-soft hover:border-ink border ${base}`
 
   return (
     <div className="no-print flex items-center gap-1.5">

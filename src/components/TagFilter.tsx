@@ -65,18 +65,18 @@ export function TagFilter({
           onClick={() => setShow(show === 'favorites' ? null : 'favorites')}
           className={chip(show === 'favorites')}
         >
-          ★ Favourites {counts.favorites ? `(${counts.favorites})` : ''}
+          ★ Favourites {counts.favorites ? counts.favorites : ''}
         </button>
         {counts.needsReview > 0 ? (
           <button
             onClick={() => setShow(show === 'review' ? null : 'review')}
             className={
               show === 'review'
-                ? 'bg-warn rounded-full px-3 py-1.5 font-medium text-white'
-                : 'bg-warn-soft text-warn rounded-full px-3 py-1.5'
+                ? 'bg-warn text-paper rounded-full px-3 py-1.5 text-xs font-medium'
+                : 'border-warn/40 text-warn rounded-full border px-3 py-1.5 text-xs'
             }
           >
-            Needs a look ({counts.needsReview})
+            {counts.needsReview} to finish
           </button>
         ) : null}
         <button
@@ -94,7 +94,7 @@ export function TagFilter({
 
       {visible.map((group) => (
         <div key={group.kind} className="space-y-1.5">
-          <p className="text-ink-faint text-[11px] font-medium uppercase tracking-wide">
+          <p className="text-ink-ghost text-[10px] font-medium uppercase tracking-[0.12em]">
             {KIND_LABEL[group.kind] ?? group.kind}
           </p>
           <div className="flex flex-wrap gap-1.5">
@@ -118,6 +118,6 @@ export function TagFilter({
 
 function chip(active: boolean) {
   return active
-    ? 'bg-accent rounded-full px-3 py-1.5 text-sm font-medium text-white'
-    : 'bg-raised border-rule text-ink-soft hover:text-ink rounded-full border px-3 py-1.5 text-sm'
+    ? 'bg-ink text-paper rounded-full px-3 py-1.5 text-xs font-medium'
+    : 'border-rule-strong text-ink-soft hover:border-ink rounded-full border px-3 py-1.5 text-xs transition-colors'
 }

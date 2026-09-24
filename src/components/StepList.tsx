@@ -19,11 +19,11 @@ export function StepList({ sections }: { sections: { name: string | null; items:
       {sections.map((section, i) => (
         <div key={i}>
           {section.name ? (
-            <h3 className="text-ink-faint mb-2 text-[11px] font-medium uppercase tracking-wide">
+            <h3 className="text-warn mb-2 text-[10px] font-medium uppercase tracking-[0.12em]">
               {section.name}
             </h3>
           ) : null}
-          <ol className="space-y-2.5">
+          <ol className="space-y-4">
             {section.items.map((step) => {
               counter += 1
               const n = counter
@@ -35,17 +35,23 @@ export function StepList({ sections }: { sections: { name: string | null; items:
                     aria-pressed={isDone}
                     className="flex w-full items-start gap-3 text-left"
                   >
+                    {/* The numeral is set in the display face and sized up: it
+                        has to be findable at a glance from across a counter. */}
                     <span
                       aria-hidden
                       className={
                         isDone
-                          ? 'bg-accent mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full text-xs font-medium text-white'
-                          : 'border-rule text-ink-faint mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full border text-xs font-medium'
+                          ? 'font-display text-accent w-[22px] shrink-0 text-[26px] leading-none'
+                          : 'font-display text-ink-ghost w-[22px] shrink-0 text-[26px] leading-none'
                       }
                     >
                       {isDone ? '✓' : n}
                     </span>
-                    <span className={isDone ? 'struck text-[15px]' : 'text-[15px]'}>
+                    <span
+                      className={
+                        isDone ? 'struck text-[15px] leading-relaxed' : 'text-[15px] leading-relaxed'
+                      }
+                    >
                       {step.text}
                     </span>
                   </button>

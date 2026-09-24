@@ -12,7 +12,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
 
   return (
     <div className="min-h-dvh">
-      <header className="border-rule bg-paper/85 no-print sticky top-0 z-20 border-b backdrop-blur">
+      <header className="border-rule bg-paper/90 no-print sticky top-0 z-20 border-b backdrop-blur">
         <div className="mx-auto flex max-w-5xl items-center gap-3 px-4 py-3">
           <Link href="/" className="font-display shrink-0 text-lg font-semibold tracking-tight">
             <span aria-hidden>🍜</span>
@@ -23,7 +23,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
           <NavTabs needsReviewCount={needsReview} />
         </div>
       </header>
-      <main className="mx-auto max-w-5xl px-4 pb-24 pt-5">{children}</main>
+      <main className="mx-auto max-w-5xl px-5 pb-24 pt-6">{children}</main>
     </div>
   )
 }

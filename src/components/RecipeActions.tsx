@@ -24,8 +24,8 @@ export function RecipeActions({
         disabled={pending}
         className={
           isFavorite
-            ? 'bg-accent rounded-full px-3 py-1.5 text-sm font-medium text-white'
-            : 'bg-raised border-rule text-ink-soft rounded-full border px-3 py-1.5 text-sm'
+            ? 'bg-accent text-paper rounded-full px-3.5 py-1.5 text-[13px] font-medium'
+            : 'border-rule-strong text-ink-soft hover:border-ink rounded-full border px-3.5 py-1.5 text-[13px] transition-colors'
         }
       >
         {isFavorite ? '★ Favourite' : '☆ Favourite'}
@@ -39,21 +39,21 @@ export function RecipeActions({
           })
         }
         disabled={pending || added}
-        className="bg-raised border-rule text-ink-soft rounded-full border px-3 py-1.5 text-sm disabled:opacity-60"
+        className="border-rule-strong text-ink-soft hover:border-ink rounded-full border px-3.5 py-1.5 text-[13px] transition-colors disabled:opacity-60"
       >
         {added ? '✓ On the list' : '+ Grocery list'}
       </button>
 
       <Link
         href={`/recipes/${slug}/edit`}
-        className="bg-raised border-rule text-ink-soft rounded-full border px-3 py-1.5 text-sm"
+        className="border-rule-strong text-ink-soft hover:border-ink rounded-full border px-3.5 py-1.5 text-[13px] transition-colors"
       >
         Edit
       </Link>
 
       <button
         onClick={() => window.print()}
-        className="bg-raised border-rule text-ink-soft rounded-full border px-3 py-1.5 text-sm"
+        className="border-rule-strong text-ink-soft hover:border-ink rounded-full border px-3.5 py-1.5 text-[13px] transition-colors"
       >
         Print
       </button>

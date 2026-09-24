@@ -9,6 +9,8 @@ import { MEAL_SLOTS, slotRank, type MealSlot } from '@/lib/meal-slots'
 export function PlanDay({
   date,
   label,
+  dayNumber,
+  weekday,
   isToday,
   entries,
   recipes,
@@ -16,6 +18,8 @@ export function PlanDay({
 }: {
   date: string
   label: string
+  dayNumber: number
+  weekday: string
   isToday: boolean
   entries: PlanEntry[]
   recipes: { id: string; title: string; slug: string }[]
@@ -27,6 +31,8 @@ export function PlanDay({
   const [slot, setSlot] = useState<MealSlot>('dinner')
   const [justAdded, setJustAdded] = useState<string | null>(null)
   const [mealId, setMealId] = useState('')
+
+  const remove = (id: string) => startTransition(() => unplanMeal(id))
   const [pending, startTransition] = useTransition()
   const formRef = useRef<HTMLFormElement>(null)
 
@@ -46,65 +52,70 @@ export function PlanDay({
     <section
       className={
         isToday
-          ? 'border-accent bg-raised rounded-[14px] border p-3.5'
-          : 'border-rule bg-raised rounded-[14px] border p-3.5'
+          ? 'flex gap-4 border-t-2 border-ink py-3.5'
+          : 'border-rule flex gap-4 border-t py-3.5'
       }
     >
-      <div className="flex items-center gap-2">
-        <h2 className="text-[15px] font-medium">
-          {label}
-          {isToday ? <span className="text-accent ml-2 text-xs">today</span> : null}
-        </h2>
-        <button
-          onClick={() => setAdding((a) => !a)}
-          className="text-ink-faint hover:text-ink ml-auto text-sm"
-          aria-label={`Add a meal to ${label}`}
+      {/* Date rail: the day recedes so the meals read as the content. */}
+      <div className="w-10 shrink-0">
+        <div
+          className={
+            isToday
+              ? 'font-display text-ink text-[22px] leading-none'
+              : 'font-display text-ink-ghost text-[22px] leading-none'
+          }
         >
-          {adding ? 'Close' : '+ Add'}
-        </button>
+          {dayNumber}
+        </div>
+        <div
+          className={
+            isToday
+              ? 'text-ink mt-1 text-[10px] font-medium uppercase tracking-[0.06em]'
+              : 'text-ink-ghost mt-1 text-[10px] uppercase tracking-[0.06em]'
+          }
+        >
+          {isToday ? 'Today' : weekday}
+        </div>
       </div>
 
-      {grouped.length ? (
-        <div className="mt-2.5 space-y-2.5">
-          {grouped.map(([slotValue, slotEntries]) => (
-            <div key={slotValue} className="flex gap-2">
-              <span className="text-ink-faint w-16 shrink-0 pt-0.5 text-xs">
-                {labelFor(slotValue)}
-              </span>
-              <ul className="min-w-0 flex-1 space-y-1">
-                {slotEntries.map((entry) => (
-                  <li key={entry.id} className="flex items-start gap-2 text-[15px]">
-                    {entry.recipe ? (
-                      // A dotted underline that is always present, because
-                      // hover-only affordances tell a phone user nothing.
-                      <Link
-                        href={`/recipes/${entry.recipe.slug}`}
-                        className="decoration-ink-faint hover:decoration-accent hover:text-accent min-w-0 flex-1 py-0.5 underline decoration-dotted underline-offset-4 transition-colors"
-                      >
-                        {entry.recipe.title}
-                      </Link>
-                    ) : (
-                      <span className="text-ink-soft min-w-0 flex-1 italic">{entry.noteText}</span>
-                    )}
-                    <button
-                      onClick={() => startTransition(() => unplanMeal(entry.id))}
-                      className="text-ink-faint hover:text-warn shrink-0 text-sm leading-tight"
-                      aria-label={`Remove ${entry.recipe?.title ?? entry.noteText} from ${labelFor(slotValue)}`}
-                    >
-                      ×
-                    </button>
-                  </li>
-                ))}
-                {slotEntries.length > 1 ? (
-                  <li className="text-ink-faint text-[11px]">
-                    {slotEntries.length} things in this meal
-                  </li>
-                ) : null}
-              </ul>
+      <div className="min-w-0 flex-1">
+        {grouped.map(([slotValue, slotEntries]) => (
+          <div key={slotValue} className="mb-3 last:mb-0">
+            <div className="text-ink-ghost text-[10px] uppercase tracking-[0.1em]">
+              {labelFor(slotValue)}
             </div>
-          ))}
-        </div>
-      ) : null}
+            <div className="mt-1 space-y-1">
+              {groupIntoMeals(slotEntries).map((block) =>
+                block.meal ? (
+                  // A saved meal is bracketed so its parts read as one dinner.
+                  <div key={block.key} className="flex gap-2.5 py-0.5">
+                    <div className="bg-accent w-0.5 shrink-0 rounded-sm" />
+                    <div className="min-w-0 flex-1">
+                      <div className="text-accent text-[10px] font-medium uppercase tracking-[0.06em]">
+                        {block.meal.name}
+                      </div>
+                      {block.entries.map((entry) => (
+                        <EntryRow key={entry.id} entry={entry} onRemove={remove} />
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  block.entries.map((entry) => (
+                    <EntryRow key={entry.id} entry={entry} onRemove={remove} />
+                  ))
+                ),
+              )}
+            </div>
+          </div>
+        ))}
+
+        <button
+          onClick={() => setAdding((a) => !a)}
+          className="text-ink-faint hover:text-ink text-[13px]"
+          aria-label={`Add a meal to ${label}`}
+        >
+          {adding ? 'Close' : entries.length ? '+ Add' : '+ Add a meal'}
+        </button>
 
       {adding ? (
         <form
@@ -215,6 +226,56 @@ export function PlanDay({
           </p>
         </form>
       ) : null}
+      </div>
     </section>
   )
+}
+
+/** One planned recipe or note, with its remove control. */
+function EntryRow({
+  entry,
+  onRemove,
+}: {
+  entry: PlanEntry
+  onRemove: (id: string) => void
+}) {
+  return (
+    <div className="flex items-start gap-2">
+      {entry.recipe ? (
+        <Link
+          href={`/recipes/${entry.recipe.slug}`}
+          className="font-display decoration-ink-ghost hover:decoration-accent hover:text-accent min-w-0 flex-1 text-[17px] leading-[1.2] underline decoration-dotted underline-offset-4 transition-colors"
+        >
+          {entry.recipe.title}
+        </Link>
+      ) : (
+        <span className="text-ink-soft min-w-0 flex-1 text-[15px] italic">{entry.noteText}</span>
+      )}
+      <button
+        onClick={() => onRemove(entry.id)}
+        className="text-ink-ghost hover:text-warn shrink-0 text-sm leading-tight"
+        aria-label={`Remove ${entry.recipe?.title ?? entry.noteText} from the plan`}
+      >
+        ×
+      </button>
+    </div>
+  )
+}
+
+/**
+ * Splits one slot's entries into blocks: each saved meal becomes one block,
+ * everything else stands alone. Consecutive entries of the same meal stay
+ * together so the bracket is unbroken.
+ */
+function groupIntoMeals(entries: PlanEntry[]) {
+  const blocks: { key: string; meal: PlanEntry['meal']; entries: PlanEntry[] }[] = []
+  for (const entry of entries) {
+    const last = blocks[blocks.length - 1]
+    if (entry.mealId && last && last.meal?.id === entry.mealId) {
+      last.entries.push(entry)
+    } else {
+      blocks.push({ key: entry.id, meal: entry.mealId ? entry.meal : null, entries: [entry] })
+    }
+  }
+  return blocks
 }

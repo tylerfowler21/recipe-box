@@ -59,7 +59,7 @@ export function GroceryList({ items }: { items: Item[] }) {
 
         <button
           onClick={() => window.print()}
-          className="text-ink-soft hover:text-ink ml-auto rounded-full px-2.5 py-1.5 text-sm"
+          className="text-ink-faint hover:text-ink ml-auto px-1 py-1.5 text-xs"
         >
           Print
         </button>
@@ -105,7 +105,7 @@ function CopyButton({ items, combined }: { items: Item[]; combined: boolean }) {
           // Clipboard access can be refused; the print view still works.
         }
       }}
-      className="text-ink-soft hover:text-ink rounded-full px-2.5 py-1.5 text-sm"
+      className="text-ink-faint hover:text-ink px-1 py-1.5 text-xs"
     >
       {copied ? 'Copied' : 'Copy'}
     </button>
@@ -114,8 +114,8 @@ function CopyButton({ items, combined }: { items: Item[]; combined: boolean }) {
 
 function tab(active: boolean) {
   return active
-    ? 'bg-accent rounded-full px-3 py-1.5 text-sm font-medium text-white'
-    : 'bg-raised border-rule text-ink-soft rounded-full border px-3 py-1.5 text-sm'
+    ? 'bg-ink text-paper rounded-full px-3.5 py-1.5 text-xs font-medium'
+    : 'border-rule-strong text-ink-soft hover:border-ink rounded-full border px-3.5 py-1.5 text-xs transition-colors'
 }
 
 function ByRecipeView({ open }: { open: Item[] }) {
@@ -132,7 +132,7 @@ function ByRecipeView({ open }: { open: Item[] }) {
     <>
       {ordered.map(([label, groupItems]) => (
         <section key={label} className="space-y-1">
-          <h2 className="text-ink-faint text-[11px] font-medium uppercase tracking-wide">
+          <h2 className="text-ink-ghost text-[10px] font-medium uppercase tracking-[0.12em]">
             {label}
           </h2>
           <ul>
@@ -158,7 +158,7 @@ function CombinedView({ items }: { items: Item[] }) {
       ))}
       {cleared.length ? (
         <div className="border-rule mt-4 space-y-1 border-t pt-4">
-          <h2 className="text-ink-faint text-[11px] font-medium uppercase tracking-wide">
+          <h2 className="text-ink-ghost text-[10px] font-medium uppercase tracking-[0.12em]">
             Got it ({cleared.length})
           </h2>
           {cleared.map((line) => (
@@ -198,8 +198,8 @@ function CombinedRow({
         aria-label={`${checked ? 'Uncheck' : 'Check off'} ${line.name}`}
         className={
           checked
-            ? 'bg-accent print-box mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-md text-[11px] text-white'
-            : 'border-rule print-box mt-0.5 size-5 shrink-0 rounded-md border'
+            ? 'bg-accent text-paper print-box mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-[4px] text-[11px]'
+            : 'border-rule-strong print-box mt-0.5 size-5 shrink-0 rounded-[4px] border-[1.5px]'
         }
       >
         {checked ? '✓' : ''}
@@ -207,7 +207,9 @@ function CombinedRow({
 
       <div className={checked ? 'struck min-w-0 flex-1' : 'min-w-0 flex-1'}>
         <span className="text-[15px]">
-          {line.amount ? <strong className="font-medium">{line.amount} </strong> : null}
+          {line.amount ? (
+            <span className="font-display text-[17px] font-semibold">{line.amount} </span>
+          ) : null}
           {line.name}
         </span>
         {line.partial ? (
@@ -215,19 +217,24 @@ function CombinedRow({
             className="text-warn ml-1.5 text-[11px]"
             title="Some lines had no amount, so they aren't in this total"
           >
-            +more
+            + unmeasured
           </span>
         ) : null}
         {line.parts.length > 1 ? (
-          <span className="text-ink-faint block text-[11px]">
+          <span className="text-ink-ghost mt-0.5 block text-[11px]">
             {line.parts.map((p) => p.text).join(' + ')}
           </span>
         ) : null}
       </div>
 
+      {/* Which meals this is for, set small and quiet on the right. */}
       {meals.length ? (
-        <span className="text-ink-faint print-meta shrink-0 text-right text-[11px] leading-tight">
-          {meals.join(', ')}
+        <span className="text-ink-faint print-meta shrink-0 text-right text-[10px] uppercase leading-[1.45] tracking-[0.03em]">
+          {meals.map((meal) => (
+            <span key={meal} className="block">
+              {meal}
+            </span>
+          ))}
         </span>
       ) : null}
     </div>
@@ -237,7 +244,7 @@ function CombinedRow({
 function DoneSection({ done }: { done: Item[] }) {
   return (
     <section className="border-rule space-y-1 border-t pt-4">
-      <h2 className="text-ink-faint text-[11px] font-medium uppercase tracking-wide">
+      <h2 className="text-ink-ghost text-[10px] font-medium uppercase tracking-[0.12em]">
         Got it ({done.length})
       </h2>
       <ul>

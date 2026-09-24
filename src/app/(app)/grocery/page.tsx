@@ -13,12 +13,14 @@ export default async function GroceryPage() {
   return (
     <div className="mx-auto max-w-2xl space-y-5">
       <div className="flex flex-wrap items-baseline justify-between gap-2">
-        <h1 className="font-display text-2xl font-semibold tracking-tight">Grocery list</h1>
+        <h1 className="font-display text-[40px] font-light leading-[0.95] tracking-[-0.02em]">
+          {open.length}{' '}
+          <span className="text-ink-faint">{open.length === 1 ? 'thing' : 'things'} to get</span>
+        </h1>
         <div className="flex flex-wrap items-baseline gap-3">
-          <p className="text-ink-faint text-sm">{open.length} to get</p>
           {done.length ? (
             <form action={clearCheckedGroceryItems}>
-              <button type="submit" className="text-ink-soft hover:text-warn no-print text-sm">
+              <button type="submit" className="text-ink-faint hover:text-warn no-print text-xs">
                 Clear {done.length} done
               </button>
             </form>

@@ -18,7 +18,7 @@ export function ClearGroceryList({ total, outstanding }: { total: number; outsta
     return (
       <button
         onClick={() => setConfirming(true)}
-        className="text-ink-soft hover:text-warn no-print text-sm"
+        className="text-ink-faint hover:text-warn no-print text-xs"
       >
         Clear all
       </button>
@@ -26,7 +26,7 @@ export function ClearGroceryList({ total, outstanding }: { total: number; outsta
   }
 
   return (
-    <span className="no-print inline-flex items-center gap-2 text-sm">
+    <span className="no-print inline-flex items-center gap-2 text-xs">
       <span className="text-ink-soft">
         Clear all {total}
         {outstanding > 0 && outstanding < total ? `, including ${outstanding} not got yet` : ''}?
@@ -34,7 +34,7 @@ export function ClearGroceryList({ total, outstanding }: { total: number; outsta
       <button
         onClick={() => startTransition(() => clearGroceryList())}
         disabled={pending}
-        className="bg-warn rounded-full px-2.5 py-1 text-xs font-medium text-white disabled:opacity-60"
+        className="bg-warn text-paper rounded-full px-2.5 py-1 text-xs font-medium disabled:opacity-60"
       >
         {pending ? 'Clearing…' : 'Yes, clear'}
       </button>

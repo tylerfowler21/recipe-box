@@ -11,6 +11,8 @@ const DAY_FMT = new Intl.DateTimeFormat('en-GB', {
   month: 'short',
   timeZone: 'UTC',
 })
+// The rail shows a big date and a short weekday, so meals align down the page.
+const WEEKDAY_FMT = new Intl.DateTimeFormat('en-GB', { weekday: 'short', timeZone: 'UTC' })
 const ISO = (d: Date) => d.toISOString().slice(0, 10)
 
 export default async function PlanPage({
@@ -42,9 +44,11 @@ export default async function PlanPage({
 
   return (
     <div className="space-y-5">
-      <div className="flex flex-wrap items-center gap-3">
-        <h1 className="font-display text-2xl font-semibold tracking-tight">This week</h1>
-        <div className="text-ink-soft ml-auto flex items-center gap-1 text-sm">
+      <div className="flex flex-wrap items-end gap-3">
+        <h1 className="font-display text-[40px] font-light leading-[0.95] tracking-[-0.02em]">
+          This week
+        </h1>
+        <div className="text-ink-faint ml-auto flex items-center gap-1 pb-1.5 text-sm">
           <Link href={`/plan?week=${ISO(prev)}`} className="rounded-full px-2.5 py-1.5">
             ←
           </Link>
@@ -62,19 +66,21 @@ export default async function PlanPage({
           <input type="hidden" name="start" value={ISO(start)} />
           <button
             type="submit"
-            className="bg-accent-soft text-accent rounded-full px-3 py-1.5 text-sm font-medium"
+            className="text-accent hover:text-ink text-[13px] font-medium underline decoration-dotted underline-offset-4"
           >
-            Add this week&rsquo;s ingredients to the grocery list
+            Shop this week&rsquo;s ingredients
           </button>
         </form>
       ) : null}
 
-      <div className="space-y-2.5">
+      <div>
         {days.map((day) => (
           <PlanDay
             key={ISO(day)}
             date={ISO(day)}
             label={DAY_FMT.format(day)}
+            dayNumber={day.getUTCDate()}
+            weekday={WEEKDAY_FMT.format(day)}
             isToday={ISO(day) === today}
             entries={entries.filter((e) => ISO(e.date) === ISO(day))}
             recipes={recipes}

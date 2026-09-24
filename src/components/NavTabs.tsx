@@ -3,8 +3,10 @@
 import Link from 'next/link'
 import { usePathname, useSearchParams } from 'next/navigation'
 
+// "Recipes" is deliberately absent: the wordmark goes home, and the page's own
+// Recipes / Meals switch covers that choice. Repeating it here made two
+// controls for one destination.
 const TABS = [
-  { href: '/', label: 'Recipes' },
   { href: '/plan', label: 'Plan' },
   { href: '/grocery', label: 'Grocery' },
 ]
@@ -18,8 +20,7 @@ export function NavTabs({ needsReviewCount }: { needsReviewCount: number }) {
   return (
     <nav className="ml-auto flex shrink-0 items-center gap-0.5 text-sm sm:gap-1">
       {TABS.map((tab) => {
-        const active =
-          tab.href === '/' ? pathname === '/' && !reviewing : pathname.startsWith(tab.href)
+        const active = pathname.startsWith(tab.href)
         return (
           <Link
             key={tab.href}
@@ -27,8 +28,8 @@ export function NavTabs({ needsReviewCount }: { needsReviewCount: number }) {
             aria-current={active ? 'page' : undefined}
             className={
               active
-                ? 'bg-accent-soft text-accent rounded-full px-2.5 py-1.5 font-medium sm:px-3'
-                : 'text-ink-soft hover:text-ink rounded-full px-2.5 py-1.5 sm:px-3'
+                ? 'text-ink px-2.5 py-1.5 font-medium sm:px-3'
+                : 'text-ink-faint hover:text-ink px-2.5 py-1.5 sm:px-3'
             }
           >
             {tab.label}
@@ -49,8 +50,8 @@ export function NavTabs({ needsReviewCount }: { needsReviewCount: number }) {
           aria-current={reviewing ? 'page' : undefined}
           className={
             reviewing
-              ? 'bg-warn ml-0.5 shrink-0 rounded-full px-2.5 py-1.5 font-medium text-white sm:ml-1'
-              : 'bg-warn-soft text-warn ml-0.5 shrink-0 rounded-full px-2.5 py-1.5 font-medium sm:ml-1'
+              ? 'bg-warn text-paper ml-0.5 shrink-0 rounded-full px-2.5 py-1.5 text-xs font-medium sm:ml-1'
+              : 'text-warn ml-0.5 shrink-0 px-2.5 py-1.5 text-xs font-medium sm:ml-1'
           }
         >
           <span aria-hidden>{needsReviewCount}</span>

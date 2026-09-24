@@ -42,7 +42,7 @@ export function ShareLinks({
     return (
       <button
         onClick={() => setOpen(true)}
-        className="bg-raised border-rule text-ink-soft no-print rounded-full border px-3 py-1.5 text-sm"
+        className="border-rule-strong text-ink-soft hover:border-ink no-print rounded-full border px-3.5 py-1.5 text-[13px] transition-colors"
       >
         Share{links.length ? ` (${links.length})` : ''}
       </button>

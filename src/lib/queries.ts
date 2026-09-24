@@ -106,7 +106,12 @@ export async function getWeekPlan(start: Date) {
   end.setUTCDate(end.getUTCDate() + 7)
   const entries = await prisma.mealPlanEntry.findMany({
     where: { date: { gte: start, lt: end } },
-    include: { recipe: { select: { title: true, slug: true, photoUrl: true } } },
+    include: {
+      recipe: { select: { title: true, slug: true, photoUrl: true } },
+      // The meal's name lets the plan bracket a salad and its dressing as one
+      // thing instead of listing them as two unrelated dinners.
+      meal: { select: { id: true, name: true, slug: true } },
+    },
     orderBy: [{ date: 'asc' }, { position: 'asc' }, { createdAt: 'asc' }],
   })
 

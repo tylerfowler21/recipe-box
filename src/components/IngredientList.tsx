@@ -25,8 +25,11 @@ export function IngredientList({
 
   return (
     <div className="space-y-3">
-      <div className="no-print flex flex-wrap items-center gap-1.5">
-        <span className="text-ink-faint mr-1 text-xs">Make</span>
+      {/* Scaling is the control used most while cooking, so it gets a band of
+          its own rather than hiding among the page's other buttons. */}
+      <div className="no-print bg-accent-soft flex flex-wrap items-center gap-1 rounded-[10px] px-3 py-2.5">
+        <span className="text-ink-faint mr-1 text-[10px] uppercase tracking-[0.1em]">Make</span>
+        <div className="flex-1" />
         {SCALE_OPTIONS.map((option) => (
           <button
             key={option.factor}
@@ -34,34 +37,38 @@ export function IngredientList({
             aria-pressed={factor === option.factor}
             className={
               factor === option.factor
-                ? 'bg-accent rounded-full px-2.5 py-1 text-xs font-medium text-white'
-                : 'bg-raised border-rule text-ink-soft rounded-full border px-2.5 py-1 text-xs'
+                ? 'font-display bg-ink text-paper rounded-full px-3.5 py-1.5 text-[15px]'
+                : 'font-display text-ink-soft hover:text-ink px-3 py-1.5 text-[15px]'
             }
           >
             {option.label}
           </button>
         ))}
-        {factor !== 1 && scaledServings ? (
-          <span className="text-ink-faint ml-1 text-xs">serves {scaledServings}</span>
-        ) : null}
       </div>
+
+      {factor !== 1 && scaledServings ? (
+        <p className="text-ink-faint text-xs">Serves {scaledServings} at this size.</p>
+      ) : null}
 
       <div className="space-y-4">
         {sections.map((section, i) => (
           <div key={i}>
             {section.name ? (
-              <h3 className="text-ink-faint mb-1.5 text-[11px] font-medium uppercase tracking-wide">
+              <h3 className="text-warn mb-2 text-[10px] font-medium uppercase tracking-[0.12em]">
                 {section.name}
               </h3>
             ) : null}
-            <ul className="space-y-1.5">
+            <ul>
               {section.items.map((ing) => {
                 const scaled = scaleIngredient(ing.text, factor)
                 return (
-                  <li key={ing.id} className="border-rule border-b pb-1.5 text-[15px]">
+                  <li
+                    key={ing.id}
+                    className="border-rule border-b py-2.5 text-[15px] leading-snug"
+                  >
                     {scaled}
                     {factor !== 1 && scaled !== ing.text ? (
-                      <span className="text-ink-faint ml-1.5 text-xs">({ing.text})</span>
+                      <span className="text-ink-ghost ml-1.5 text-xs">({ing.text})</span>
                     ) : null}
                   </li>
                 )

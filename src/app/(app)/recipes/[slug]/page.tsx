@@ -39,39 +39,46 @@ export default async function RecipePage({ params }: { params: Promise<{ slug: s
   const links = await getShareLinks(recipe.id)
 
   return (
-    <article className="space-y-6">
-      <Link href="/" className="text-ink-soft hover:text-ink no-print inline-block text-sm">
-        ← All recipes
+    <article>
+      <Link href="/" className="text-ink-faint hover:text-ink no-print inline-block text-[13px]">
+        ← Recipes
       </Link>
 
-      {recipe.photoUrl ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={recipe.photoUrl}
-          alt={recipe.title}
-          className="max-h-80 w-full rounded-[14px] object-cover"
-        />
-      ) : null}
-
-      <header className="space-y-3">
-        <h1 className="font-display text-3xl font-semibold leading-tight tracking-tight">
+      {/* The title leads, not the photo — most recipes here don't have one. */}
+      <header className="mt-4 space-y-3">
+        <h1 className="font-display text-[34px] font-normal leading-[1.02] tracking-[-0.02em]">
           {recipe.title}
         </h1>
 
         {recipe.description ? (
-          <p className="text-ink-soft text-[15px]">{recipe.description}</p>
+          <p className="text-ink-soft text-[15px] leading-relaxed">{recipe.description}</p>
         ) : null}
 
-        <div className="text-ink-faint flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
-          {time ? <span>{time}</span> : null}
-          {recipe.servings ? <span>Serves {recipe.servings}</span> : null}
+        <div className="text-ink-faint flex flex-wrap items-center gap-x-2 gap-y-1 text-xs">
+          <span>
+            {recipe.ingredients.length} ingredient
+            {recipe.ingredients.length === 1 ? '' : 's'}
+          </span>
+          {time ? (
+            <>
+              <span aria-hidden>·</span>
+              <span>{time}</span>
+            </>
+          ) : null}
+          {recipe.servings ? (
+            <>
+              <span aria-hidden>·</span>
+              <span>serves {recipe.servings}</span>
+            </>
+          ) : null}
+          {recipe.source ? <span aria-hidden>·</span> : null}
           {recipe.source ? (
             recipe.sourceUrl ? (
               <a
                 href={recipe.sourceUrl}
                 target="_blank"
                 rel="noopener noreferrer nofollow"
-                className="hover:text-ink underline"
+                className="hover:text-ink underline decoration-dotted underline-offset-2"
               >
                 from {recipe.source} ↗
               </a>
@@ -82,17 +89,26 @@ export default async function RecipePage({ params }: { params: Promise<{ slug: s
         </div>
 
         {recipe.tags.length ? (
-          <div className="flex flex-wrap gap-1.5">
+          <div className="flex flex-wrap gap-x-3 gap-y-1">
             {recipe.tags.map(({ tag }) => (
               <Link
                 key={tag.slug}
                 href={`/?tag=${tag.slug}`}
-                className="bg-accent-soft text-accent rounded-full px-2.5 py-1 text-xs"
+                className="text-accent text-xs hover:underline"
               >
                 {tag.name}
               </Link>
             ))}
           </div>
+        ) : null}
+
+        {recipe.photoUrl ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={recipe.photoUrl}
+            alt={recipe.title}
+            className="max-h-72 w-full rounded-[6px] object-cover"
+          />
         ) : null}
 
         <div className="no-print flex flex-wrap items-center gap-2 pt-1">
@@ -107,7 +123,7 @@ export default async function RecipePage({ params }: { params: Promise<{ slug: s
       </header>
 
       {recipe.needsReview ? (
-        <p className="bg-warn-soft text-warn no-print rounded-[14px] px-4 py-3 text-sm">
+        <p className="border-warn/40 text-warn no-print mt-6 border-l-2 py-1 pl-4 text-sm">
           This one came over from the recipe book missing{' '}
           {recipe.ingredients.length === 0 ? 'its ingredients' : 'its instructions'}.{' '}
           <Link href={`/recipes/${recipe.slug}/edit`} className="font-medium underline">
@@ -117,9 +133,11 @@ export default async function RecipePage({ params }: { params: Promise<{ slug: s
         </p>
       ) : null}
 
-      <div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)]">
+      <div className="mt-8 grid gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)]">
         <section>
-          <h2 className="font-display mb-3 text-lg font-semibold">Ingredients</h2>
+          <h2 className="text-ink-ghost mb-3 text-[10px] font-medium uppercase tracking-[0.12em]">
+            Ingredients
+          </h2>
           {recipe.ingredients.length === 0 ? (
             <p className="text-ink-faint text-sm">Not recorded yet.</p>
           ) : (
@@ -128,7 +146,9 @@ export default async function RecipePage({ params }: { params: Promise<{ slug: s
         </section>
 
         <section>
-          <h2 className="font-display mb-3 text-lg font-semibold">Instructions</h2>
+          <h2 className="text-ink-ghost mb-3 text-[10px] font-medium uppercase tracking-[0.12em]">
+            Method
+          </h2>
           {recipe.steps.length === 0 ? (
             <p className="text-ink-faint text-sm">
               Not recorded yet —{' '}
@@ -144,8 +164,10 @@ export default async function RecipePage({ params }: { params: Promise<{ slug: s
       </div>
 
       {recipe.notes ? (
-        <section className="border-rule border-t pt-5">
-          <h2 className="font-display mb-2 text-lg font-semibold">Notes</h2>
+        <section className="border-rule mt-10 border-t pt-5">
+          <h2 className="text-ink-ghost mb-2 text-[10px] font-medium uppercase tracking-[0.12em]">
+            Notes
+          </h2>
           <p className="text-ink-soft whitespace-pre-wrap text-[15px]">{recipe.notes}</p>
         </section>
       ) : null}

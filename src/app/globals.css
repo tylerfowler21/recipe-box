@@ -3,18 +3,26 @@
 /*
   Warm paper palette — this gets read in a kitchen, often on a phone, often with
   greasy hands and a glance. High contrast, generous tap targets, no chrome.
+
+  The design is typography-led on purpose: almost no recipe in this box has a
+  photo or a recorded time. What every recipe does have is a title, a few tags
+  and an ingredient count, so those carry the layout. A photo enriches a row
+  where one exists; nothing looks broken where one doesn't.
 */
 :root {
-  --paper: #faf6ef;
-  --paper-raised: #ffffff;
-  --ink: #23201b;
-  --ink-soft: #6b6255;
-  --ink-faint: #9c9284;
-  --rule: #e6ddd996;
-  --accent: #2f6b4f;
-  --accent-soft: #eaf1ec;
-  --warn: #9a5b2c;
-  --warn-soft: #fbf0e4;
+  --paper: #f6f1e7;
+  --paper-raised: #fffdf8;
+  --ink: #1c1a16;
+  --ink-soft: #4a4437;
+  --ink-faint: #857c6c;
+  /* Faintest tier — dates, counts, anything that must recede behind a title. */
+  --ink-ghost: #a59b89;
+  --rule: #e5ddcd;
+  --rule-strong: #dcd3c2;
+  --accent: #2c5f4a;
+  --accent-soft: #e7efe9;
+  --warn: #a6552b;
+  --warn-soft: #f6e9de;
   --radius: 14px;
 }
 
@@ -23,12 +31,14 @@
     --paper: #16140f;
     --paper-raised: #1f1c16;
     --ink: #f2ece1;
-    --ink-soft: #b3a894;
-    --ink-faint: #8a8071;
-    --rule: #34302733;
-    --accent: #7dbd9a;
+    --ink-soft: #c2b8a4;
+    --ink-faint: #8f8676;
+    --ink-ghost: #6e6658;
+    --rule: #33302a;
+    --rule-strong: #403c34;
+    --accent: #87c2a0;
     --accent-soft: #1d2a23;
-    --warn: #d99a62;
+    --warn: #dda06a;
     --warn-soft: #2a2119;
   }
 }
@@ -36,12 +46,14 @@
   --paper: #16140f;
   --paper-raised: #1f1c16;
   --ink: #f2ece1;
-  --ink-soft: #b3a894;
-  --ink-faint: #8a8071;
-  --rule: #34302733;
-  --accent: #7dbd9a;
+  --ink-soft: #c2b8a4;
+  --ink-faint: #8f8676;
+  --ink-ghost: #6e6658;
+  --rule: #33302a;
+  --rule-strong: #403c34;
+  --accent: #87c2a0;
   --accent-soft: #1d2a23;
-  --warn: #d99a62;
+  --warn: #dda06a;
   --warn-soft: #2a2119;
 }
 
@@ -51,13 +63,15 @@
   --color-ink: var(--ink);
   --color-ink-soft: var(--ink-soft);
   --color-ink-faint: var(--ink-faint);
+  --color-ink-ghost: var(--ink-ghost);
   --color-rule: var(--rule);
+  --color-rule-strong: var(--rule-strong);
   --color-accent: var(--accent);
   --color-accent-soft: var(--accent-soft);
   --color-warn: var(--warn);
   --color-warn-soft: var(--warn-soft);
   --font-display: var(--font-fraunces), Georgia, serif;
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-work-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
 html {
@@ -72,25 +86,54 @@ body {
   overflow-x: hidden;
 }
 
-/* Inputs inherit the paper look rather than the browser's grey boxes. */
+/*
+  Inputs are a ruled line rather than a box. A boxed field reads as chrome on a
+  page that otherwise has none, and the underline keeps the eye on the words.
+*/
 .field {
   width: 100%;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--ink);
+  border-radius: 0;
+  padding: 0 0 0.55rem 0;
+  color: var(--ink);
+  font-size: 1rem;
+  line-height: 1.4;
+}
+.field:focus {
+  outline: none;
+  border-bottom-color: var(--accent);
+  box-shadow: 0 1px 0 0 var(--accent);
+}
+.field::placeholder {
+  color: var(--ink-faint);
+}
+
+/* Selects and textareas still need a box to read as editable regions. */
+.field-box {
+  width: 100%;
   background: var(--paper-raised);
-  border: 1px solid var(--rule);
+  border: 1px solid var(--rule-strong);
   border-radius: 10px;
   padding: 0.6rem 0.75rem;
   color: var(--ink);
   font-size: 1rem;
   line-height: 1.4;
 }
-.field:focus {
+.field-box:focus {
   outline: 2px solid var(--accent);
   outline-offset: 1px;
 }
-.field::placeholder { color: var(--ink-faint); }
+.field-box::placeholder {
+  color: var(--ink-faint);
+}
 
 /* Checked-off grocery lines and cooked steps get struck through. */
-.struck { text-decoration: line-through; color: var(--ink-faint); }
+.struck {
+  text-decoration: line-through;
+  color: var(--ink-faint);
+}
 
 @media print {
   .no-print { display: none !important; }

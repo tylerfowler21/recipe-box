@@ -22,8 +22,8 @@ export function GroceryRow({ item }: { item: Item }) {
         aria-pressed={checked}
         className={
           checked
-            ? 'bg-accent print-box flex size-5 shrink-0 items-center justify-center rounded-md text-[11px] text-white'
-            : 'border-rule print-box size-5 shrink-0 rounded-md border'
+            ? 'bg-accent text-paper print-box flex size-5 shrink-0 items-center justify-center rounded-[4px] text-[11px]'
+            : 'border-rule-strong print-box size-5 shrink-0 rounded-[4px] border-[1.5px]'
         }
       >
         {checked ? '✓' : ''}
